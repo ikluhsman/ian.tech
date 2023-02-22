@@ -1,0 +1,82 @@
+@import "../utilities/_mixins.scss";
+@import "../utilities/_variables.scss";
+
+body {
+  @apply leading-6 bg-gray-100 dark:bg-gray-1000 text-gray-1000 dark:text-gray-100;
+  @include default-font;
+  scrollbar-color: $accentColor $scrollbar-bg;
+  scrollbar-width: thin;
+  margin: 0;
+}
+
+.dark body {
+  scrollbar-color: $accentColor $scrollbar-dark-bg;
+}
+
+::selection {
+  @apply bg-gray-500/50;
+}
+
+body::-webkit-scrollbar {
+  width: 14px;
+}
+
+body::-webkit-scrollbar-track {
+  background: $scrollbar-bg;
+}
+
+.dark body::-webkit-scrollbar-track {
+  background: $scrollbar-dark-bg;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: $accentColor;
+  border-radius: 3px;
+  border: 2px solid $scrollbar-border;
+}
+
+.dark body::-webkit-scrollbar-thumb {
+  border: 2px solid $scrollbar-dark-border;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: $accentColor;
+}
+
+.no-select:active {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.no-select:focus {
+  outline: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @include default-font;
+  color: $accentColor;
+}
+
+.accent-color {
+  color: $accentColor;
+}
+
+a {
+  @apply text-gray-900 dark:text-gray-200 underline;
+  display: inline-block;
+  text-decoration-line: underline;
+}
+
+a:hover {
+  @apply no-underline;
+  color: $accentColor;
+}

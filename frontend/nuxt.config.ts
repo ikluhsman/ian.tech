@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
- app: {
+  app: {
     head: {
       title: "anikl.com",
       meta: [
@@ -60,6 +60,5 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: true,
-  },
-  
+  }
 });

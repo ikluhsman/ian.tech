@@ -18,5 +18,4 @@ const justification = computed(() => {
   return appStore.justification;
 });
 const route = useRoute();
-const router = useRouter();
 </script>

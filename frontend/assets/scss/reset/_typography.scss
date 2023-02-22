@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Fira Code iScript Italic";
+  src: local("Fira Code iScript Italic"),
+    url("/fonts/FiraCodeTwoiScript-Italic.ttf") format("truetype");
+}
+
+h1 {
+  @apply text-7xl;
+}
+
+h2 {
+  @apply text-5xl;
+}
+
+h3 {
+  @apply text-2xl;
+}
+
+h4 {
+  @apply text-xl;
+}
+
+h5 {
+  @apply text-lg;
+}
