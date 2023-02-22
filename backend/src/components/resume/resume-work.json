@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_resume_resume_works",
+  "info": {
+    "displayName": "Resume.jobs",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "job": {
+      "displayName": "jobs",
+      "type": "component",
+      "repeatable": true,
+      "component": "resume.jobs"
+    }
+  }
+}

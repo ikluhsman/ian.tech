@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_sections_navs",
+  "info": {
+    "displayName": "Sections.nav",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

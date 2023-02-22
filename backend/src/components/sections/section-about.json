@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sections_section_abouts",
+  "info": {
+    "displayName": "Sections.about",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

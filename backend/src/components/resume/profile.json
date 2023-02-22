@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_resume_profiles",
+  "info": {
+    "displayName": "Resume.profile",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

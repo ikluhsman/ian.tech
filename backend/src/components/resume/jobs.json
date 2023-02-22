@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_resume_jobs",
+  "info": {
+    "displayName": "Resume.job",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "jobTitle": {
+      "type": "string"
+    },
+    "companyUrl": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "highlights": {
+      "type": "richtext"
+    }
+  }
+}

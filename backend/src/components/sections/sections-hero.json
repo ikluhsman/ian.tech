@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_sections_heroes",
+  "info": {
+    "displayName": "Sections.hero",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "introduction": {
+      "type": "richtext"
+    }
+  }
+}

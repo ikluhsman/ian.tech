@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_resume_resume_profiles",
+  "info": {
+    "displayName": "Resume.profiles",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "profile": {
+      "displayName": "Profile",
+      "type": "component",
+      "repeatable": true,
+      "component": "resume.profile"
+    }
+  }
+}

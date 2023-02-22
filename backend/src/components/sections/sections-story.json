@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_sections_sections_stories",
+  "info": {
+    "displayName": "Sections.story"
+  },
+  "options": {},
+  "attributes": {
+    "story": {
+      "type": "richtext"
+    }
+  }
+}
