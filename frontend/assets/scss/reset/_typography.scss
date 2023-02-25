@@ -1,11 +1,34 @@
+@import "../utilities/_mixins.scss";
+@import "../utilities/_variables.scss";
+
 @font-face {
   font-family: "Fira Code iScript Italic";
   src: local("Fira Code iScript Italic"),
     url("/fonts/FiraCodeTwoiScript-Italic.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Fira Code iScript";
+  src: local("Fira Code iScript"),
+    url("/fonts/FiraCodeTwoiScript-Regular.ttf") format("truetype");
+}
+
+body {
+  @apply leading-6 text-gray-1000 dark:text-gray-50;
+  @include default-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @include monospace-font;
+  color: $accentColor;
+}
+
 h1 {
-  @apply text-7xl;
+  @apply text-6xl;
 }
 
 h2 {
@@ -13,7 +36,8 @@ h2 {
 }
 
 h3 {
-  @apply text-2xl;
+  @apply text-3xl;
+  @include cursive-font;
 }
 
 h4 {
@@ -22,4 +46,15 @@ h4 {
 
 h5 {
   @apply text-lg;
+}
+
+a {
+  @apply text-gray-900 dark:text-gray-50 underline;
+  display: inline-block;
+  text-decoration-line: underline;
+}
+
+a:hover {
+  @apply no-underline;
+  color: $accentColor;
 }

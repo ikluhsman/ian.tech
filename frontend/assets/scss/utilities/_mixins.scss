@@ -1,18 +1,19 @@
 @mixin default-font {
-    font-family: "Karla";
-    font-weight: 400;
+  font-family: "Noto Sans";
+  font-style: normal;
 }
 
-@mixin no-select-active {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+@mixin display-font {
+  font-family: "Noto Sans";
+  font-style: normal;
 }
 
-@mixin no-select-focus {
-    outline: none !important;
+@mixin monospace-font {
+  font-family: "Fira Mono";
+  font-style: normal;
+}
+
+@mixin cursive-font {
+  font-family: "Fira Code iScript Italic";
+  font-style: italic;
 }

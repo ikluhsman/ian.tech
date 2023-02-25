@@ -1,0 +1,7 @@
+#site-logo h1 {
+  @include cursive-font;
+  font-weight: 600;
+}
+#site-logo span {
+  @include monospace-font;
+}

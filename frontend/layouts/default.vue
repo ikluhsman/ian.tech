@@ -1,12 +1,21 @@
 <template>
   <color-scheme :placeholder="''" tag="span">
-    <div class="flex justify-end p-2">
-      <theme-selector />
-    </div>
-    <div id="page-layout" :class="'px-4 flex ' + justification">
-      <div class="w-11/12 sm:w-128">
-        <nuxt-link href="/" v-if="route.path !== '/'">go back to home</nuxt-link>
-        <slot />
+    <div>
+      <div class="flex justify-center">
+        <div class="flex w-full py-1/2">
+          <theme-selector class="absolute right-2 top-2" />
+        </div>
+      </div>
+      <div :class="'px-4 md:flex ' + justification">
+        <div>
+          <site-logo />
+          <div id="page-layout">
+            <div class="w-11/12 md:w-140">
+              <nuxt-link href="/" v-if="route.path !== '/'">go back</nuxt-link>
+              <slot />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </color-scheme>

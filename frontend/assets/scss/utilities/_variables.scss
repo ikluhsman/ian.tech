@@ -1,5 +1,11 @@
-$scrollbar-bg: #d4d4d4;
+$scrollbar-bg: #fafafa;
 $scrollbar-dark-bg: #404040;
-$scrollbar-border: #d4d4d4;
+$scrollbar-border: #fafafa;
 $scrollbar-dark-border: #404040;
 $accentColor: var(--accentColor);
+$bg-gray-100: rgba(245, 245, 245, 0);
+$bg-gray-1000: #0F0F0F;
+$bg-gray-1000-trans: rgba(245,245,245,0);
+$tw-gradient-from: $accentColor;
+$tw-gradient-to: $bg-gray-100;
+$tw-gradient-stops: $tw-gradient-from 0.5%, $tw-gradient-to 7%;

@@ -1,11 +1,11 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "anikl.com",
+      title: "ian.tech",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { hid: "anikl.com", name: "Ian K Dev", content: "" },
+        { hid: "ian.tech", name: "Ian Tech", content: "" },
         { name: "format-detection", content: "telephone=no" },
       ],
       link: [
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         {
           hid: "canonical",
           rel: "canonical",
-          href: "https://anikl.com",
+          href: "https://ian.tech",
         },
         {
           rel: "stylesheet",
@@ -21,15 +21,15 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Fira%20Code",
+          href: "https://fonts.googleapis.com/css?family=Noto%20Sans",
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Oswald",
+          href: "https://fonts.googleapis.com/css?family=Fira%20Sans",
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Karla",
+          href: "https://fonts.googleapis.com/css?family=Merriweather",
         },
       ],
     },

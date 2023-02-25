@@ -4,7 +4,8 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article"
+    "displayName": "Article",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,27 +15,38 @@
     "title": {
       "type": "string"
     },
-    "subject": {
-      "type": "string"
-    },
-    "created": {
-      "type": "date"
-    },
-    "updated": {
-      "type": "date"
-    },
     "content": {
       "type": "richtext"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "articles"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "writer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::writer.writer",
+      "inversedBy": "article"
     }
   }
 }

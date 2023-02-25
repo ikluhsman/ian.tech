@@ -1,9 +1,46 @@
 @import "./reset/_typography.scss";
 @import "./reset/_reset.scss";
 @import "./utilities/_mixins.scss";
+@import "./layouts/_default.scss";
 @import "./utilities/_variables.scss";
+@import "./components/_sitelogo.scss";
+@import "./pages/_index.scss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* global color classes */
+.accent-color {
+  color: $accentColor;
+}
 
+/* global browser scrollbar styling */
+body {
+  @apply bg-gray-100 dark:bg-gray-1000;
+  scrollbar-color: $accentColor $scrollbar-bg;
+  scrollbar-width: thin;
+  margin: 0;
+}
+.dark body {
+  scrollbar-color: $accentColor $scrollbar-dark-bg;
+}
+body::-webkit-scrollbar {
+  width: 14px;
+}
+body::-webkit-scrollbar-track {
+  background: $scrollbar-bg;
+}
+.dark body::-webkit-scrollbar-track {
+  background: $scrollbar-dark-bg;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: $accentColor;
+  border-radius: 3px;
+  border: 2px solid $scrollbar-border;
+}
+.dark body::-webkit-scrollbar-thumb {
+  border: 2px solid $scrollbar-dark-border;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: $accentColor;
+}
