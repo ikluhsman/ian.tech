@@ -1,11 +1,12 @@
 <template>
-    <section id="intro" v-html="html" />
+    <section id="intro" v-html="htmlContent" />
 </template>
 <script setup>
 defineProps({
-  html: {
-    type: Array,
-    default: [],
+  htmlContent: {
+    type: String,
+    default: "",
   },
 });
 </script>
+

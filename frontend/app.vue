@@ -11,11 +11,8 @@ import { useAppStore } from "./stores/AppStore.js";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 const appStore = useAppStore();
 appStore.fetchRandomColor();
-
 onMounted(() => {
   let root = document.querySelector(":root");
-  root.style.setProperty("--accentColor", appStore.randomColor);
+  root.style.setProperty("--accent-color", appStore.randomColor);
 });
-
-
 </script>

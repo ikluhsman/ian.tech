@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["gsap"],
   },
-  css: ["~/assets/scss/global.scss"],
+  css: ["~/assets/scss/global.scss", "~/assets/prism.css"],
   colorMode: {
     preference: "system",
     fallback: "light",
@@ -60,5 +60,5 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: true,
-  }
+  },
 });

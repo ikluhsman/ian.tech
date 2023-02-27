@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_section_news",
+  "info": {
+    "displayName": "Section.news",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "caption": {
+      "type": "text"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

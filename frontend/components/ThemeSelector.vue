@@ -1,24 +1,24 @@
 <template>
   <div class="flex gap-2">
     <div class="invisible lg:visible">
-      <Icon
+      <icon
         name="lucide:align-horizontal-justify-start"
         v-if="justification === 'justify-start'"
-        @click="appStore.setJustification()"
+        @click="appStore.cycleJustification()"
       />
-      <Icon
+      <icon
         name="lucide:align-horizontal-justify-center"
         v-if="justification === 'justify-center'"
-        @click="appStore.setJustification()"
+        @click="appStore.cycleJustification()"
       />
-      <Icon
+      <icon
         name="lucide:align-horizontal-justify-end"
         v-if="justification === 'justify-end'"
-        @click="appStore.setJustification()"
+        @click="appStore.cycleJustification()"
       />
     </div>
     <div>
-      <Icon
+      <icon
         :name="colorMode.preference === 'dark' ? 'ri:moon-line' : 'ri:sun-line'"
         @click="changeDarkLight"
         class="cursor-pointer"
@@ -39,3 +39,6 @@ function changeDarkLight() {
     : (colorMode.preference = "dark");
 }
 </script>
+<style scoped>
+
+</style>

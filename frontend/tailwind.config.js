@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require("tailwindcss/colors");
 module.exports = {
+  mode: "jit",
   darkMode: "class",
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
+    "./middleware/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue",
   ],
@@ -24,13 +26,16 @@ module.exports = {
           700: "#404040",
           800: "#262626",
           900: "#171717",
-          1000: "#0F0F0F"
+          1000: "#0F0F0F",
         },
       },
       width: {
         128: "32rem",
         140: "36rem",
         160: "40rem",
+      },
+      boxShadow: {
+        custom: "3px 5px 1.2em var(--accent-color)",
       },
     },
   },

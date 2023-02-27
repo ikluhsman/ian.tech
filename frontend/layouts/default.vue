@@ -1,5 +1,10 @@
 <template>
-  <color-scheme :placeholder="''" tag="span">
+  <color-scheme placeholder="" tag="span">
+    <arrow-button
+      id="top-button"
+      @click="scrollToTop"
+      class="opacity-0 fixed bottom-0 right-6 md:right-12"
+    />
     <div>
       <div class="flex justify-center">
         <div class="flex w-full py-1/2">
@@ -9,8 +14,8 @@
       <div :class="'px-4 md:flex ' + justification">
         <div>
           <site-logo />
-          <div id="page-layout">
-            <div class="w-11/12 md:w-140">
+          <div>
+            <div class="mt-8 w-11/12 md:w-140">
               <nuxt-link href="/" v-if="route.path !== '/'">go back</nuxt-link>
               <slot />
             </div>
@@ -22,9 +27,44 @@
 </template>
 <script setup>
 import { useAppStore } from "../stores/AppStore.js";
+import _ from "lodash";
+import gsap from "gsap";
 const appStore = useAppStore();
+appStore.fetchRandomColor();
 const justification = computed(() => {
   return appStore.justification;
 });
 const route = useRoute();
+const throttleScroll = _.throttle(function () {
+  if (window.scrollY > 175) {
+    unhideTopButton();
+  }
+  if (window.scrollY < 175) {
+    hideTopButton();
+  }
+}, 250);
+
+onMounted(() => {
+  if (process.client) {
+    window.addEventListener("scroll", throttleScroll);
+  }
+  let root = document.querySelector(":root");
+  root.style.setProperty("--accent-color", appStore.randomColor);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", throttleScroll);
+});
+function unhideTopButton() {
+  gsap.to("#top-button", { duration: 0.6, opacity: 0.75, y: -50 });
+}
+function hideTopButton() {
+  gsap.to("#top-button", { duration: 0.6, opacity: 0, y: 50 });
+}
+function scrollToTop() {
+  gsap.to(window, {
+    duration: 0.25,
+    scrollTo: { y: 0, offsetY: 128 },
+  });
+}
 </script>

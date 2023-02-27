@@ -1,6 +1,6 @@
 <template>
-  <div id="site-logo">
-    <span class="text-3xl tracking-wider p-0 h-0 m-0">ian</span>
-    <h1 class="accent-color text-4xl select-none no-select selection::bg-red-500 inline p-0 h-0 m-0">.tech</h1>
+  <div>
+    <span class="text-3xl tracking-wider p-0 m-0 font-bold font-monospace text-gray-900 dark:text-gray-50">ian</span>
+    <span id="site-logo" class="accent-color font-bold font-cursive text-4xl site-logo">.tech</span>
   </div>
 </template>

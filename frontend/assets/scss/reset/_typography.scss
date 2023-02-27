@@ -13,6 +13,19 @@
     url("/fonts/FiraCodeTwoiScript-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Flottflott";
+  src: local("Flottflott"),
+    url("/fonts/Flottflott-Regular.ttf") format("truetype");
+}
+
+.font-cursive {
+  @include cursive-font;
+}
+.font-monospace {
+  @include monospace-font;
+}
+
 body {
   @apply leading-6 text-gray-1000 dark:text-gray-50;
   @include default-font;
@@ -22,9 +35,10 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
   @include monospace-font;
-  color: $accentColor;
+  color: $accent-color;
 }
 
 h1 {
@@ -48,13 +62,16 @@ h5 {
   @apply text-lg;
 }
 
+h6 {
+  @apply text-base;
+}
+
 a {
   @apply text-gray-900 dark:text-gray-50 underline;
-  display: inline-block;
   text-decoration-line: underline;
 }
 
 a:hover {
   @apply no-underline;
-  color: $accentColor;
+  color: $accent-color;
 }

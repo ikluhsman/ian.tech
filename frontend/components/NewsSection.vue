@@ -1,9 +1,7 @@
 <template>
   <section id="news">
     <h2>news</h2>
-    <p>
-      I occasionally write about things I'm working on in my life.
-    </p>
+    <p>{{ caption }}</p>
     <div>
       <ul class="list-none p-0">
         <li>article1</li>
@@ -14,3 +12,15 @@
     </div>
   </section>
 </template>
+<script setup>
+defineProps({
+  htmlContent: {
+    type: String,
+    default: "",
+  },
+  caption: {
+    type: String,
+    default: "",
+  }
+});
+</script>

@@ -1,3 +1,4 @@
-.bg-gradient-left-side {
-    background-image: linear-gradient(to right, $tw-gradient-stops);
+@import "../utilities/_variables.scss";
+#bg-gradient-left-side {
+    // background-image: linear-gradient(to right, $tw-gradient-stops);
 }

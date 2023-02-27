@@ -1,9 +1,13 @@
 @import "../utilities/_variables.scss";
 
+ul {
+  @apply leading-7;
+}
 /* element selections touch-screen friendly */
 ::selection {
   @apply bg-gray-500/50;
 }
+
 .no-select:active {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;

@@ -1,17 +1,19 @@
 <template>
   <section id="projects">
     <h2>projects</h2>
-    <p>Most of the complex code I have created cannot be shared with the public.</p>
-    <p>
-      I do have some pet projects on
-      <a href="https://github.com/ikluhsman" target="_blank">GitHub</a> that are public,
-      including this site.
+    <p>In the past few years I've started sharing my personal projects on 
+      <a href="https://github.com/ikluhsman" target="_blank">GitHub</a>. <a href="https://github.com/ikluhsman/ian.tech" target="_blank">This site is on GitHub</a> if you'd like to browse or re-use the code.
     </p>
     <div>
-      <ul class="list-none p-0">
-        <li v-for="(r, k) in repos" :key="k">
-          {{ formatDate(r.created) }}
+      <ul class="p-0 list-none">
+        <li v-for="(r, k) in repos" :key="k" class="pb-1 flex gap-2">
+          <span>{{ formatDate(r.created) }}</span>
           <a :href="r.html_url" target="_blank">{{ r.name }}</a>
+          <span
+            v-if="r.language"
+            class="rounded-xl px-2 dark:bg-gray-700 bg-gray-300 dark:text-gray-300 text-gray-700"
+            >{{ r.language }}</span
+          >
         </li>
       </ul>
     </div>
@@ -29,5 +31,4 @@ function formatDate(dateString: string | number | Date | dayjs.Dayjs | null | un
   const date = dayjs(dateString);
   return date.format("MM/DD/YYYY");
 }
-const { $mdRenderer } = useNuxtApp();
 </script>

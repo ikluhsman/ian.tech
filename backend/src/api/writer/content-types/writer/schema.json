@@ -41,11 +41,6 @@
     "smsPhoneNumber": {
       "type": "string"
     },
-    "my_links": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::my-link.my-link"
-    },
     "article": {
       "type": "relation",
       "relation": "oneToOne",

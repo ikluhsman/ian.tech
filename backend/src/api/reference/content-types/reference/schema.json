@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "references",
+  "info": {
+    "singularName": "reference",
+    "pluralName": "references",
+    "displayName": "Reference",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "submissionDate": {
+      "type": "date"
+    },
+    "referenceText": {
+      "type": "richtext"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "isCurrent": {
+      "type": "boolean"
+    },
+    "mayContact": {
+      "type": "boolean"
+    },
+    "company": {
+      "type": "string"
+    }
+  }
+}

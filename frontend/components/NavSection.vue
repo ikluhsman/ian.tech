@@ -6,10 +6,10 @@
         <li><span id="linkto-news" class="cursor-pointer underline" @click="idLinkClick">news</span></li>
         <li><span id="linkto-projects" class="cursor-pointer underline" @click="idLinkClick">projects</span></li>
         <li><span id="linkto-photos" class="cursor-pointer underline" @click="idLinkClick">photos</span></li>
-        <li><span id="linkto-footer" class="cursor-pointer underline" @click="idLinkClick">contact me</span></li>
-        <li><nuxt-link to="/about">about</nuxt-link></li>
-        <li><nuxt-link to="/history">history</nuxt-link></li>        
+        <li><span id="linkto-footer" class="cursor-pointer underline" @click="idLinkClick">contact</span></li>
+        <li><nuxt-link to="/history">history</nuxt-link></li>
       </ul>
+      <h6 class="m-0">if you are hiring please see <nuxt-link to="/resume">my resume</nuxt-link></h6>
     </nav>
   </section>
 </template>
