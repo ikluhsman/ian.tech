@@ -1,8 +1,8 @@
 <template>
   <section id="projects">
     <h2>projects</h2>
-    <p>In the past few years I've started sharing my personal projects on 
-      <a href="https://github.com/ikluhsman" target="_blank">GitHub</a>. <a href="https://github.com/ikluhsman/ian.tech" target="_blank">This site is on GitHub</a> if you'd like to browse or re-use the code.
+    <p>In recent past I started sharing projects I make on 
+      <a href="https://github.com/ikluhsman" target="_blank">GitHub</a>.
     </p>
     <div>
       <ul class="p-0 list-none">

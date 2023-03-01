@@ -1,16 +1,3 @@
-<template>
-  <div>
-    <h1>{{ homePage?.attributes.intro.heading }}</h1>
-    <div>
-      <intro-section :htmlContent="introContent" />
-      <nav-section />
-      <news-section :htmlContent="newsContent" :caption="newsCaption"/>
-      <project-section :repos="repos" />
-      <photo-section />
-      <footer-section />
-    </div>
-  </div>
-</template>
 <script setup>
 // tell the store to fetch data
 import { useAppStore } from "~~/stores/AppStore";
@@ -34,8 +21,22 @@ onMounted(() => {
   root.style.setProperty("--accent-color", appStore.randomColor);
 });
 </script>
+<template>
+  <div>
+    <h1 class="mt-24">{{ homePage?.attributes.intro.heading }}</h1>
+    <div>
+      <intro-section :htmlContent="introContent" />
+      <nav-section />
+      <h6 class="m-0 text-xl">hiring? see <nuxt-link class="text-xl text-shadow-accent-color" to="/resume">my resume</nuxt-link></h6>
+      <news-section :htmlContent="newsContent" :caption="newsCaption"/>
+      <project-section :repos="repos" />
+      <photo-section />
+      <footer-section />
+    </div>
+  </div>
+</template>
 <style scoped>
-section { @apply pb-8; }
+section { @apply pb-4; }
 section nav h2:first-of-type {
   @apply text-gray-1000 dark:text-gray-100;
 }

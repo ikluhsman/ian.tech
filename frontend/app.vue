@@ -7,8 +7,9 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { Flip } from "gsap/Flip";
 import { useAppStore } from "./stores/AppStore.js";
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Flip);
 const appStore = useAppStore();
 appStore.fetchRandomColor();
 onMounted(() => {

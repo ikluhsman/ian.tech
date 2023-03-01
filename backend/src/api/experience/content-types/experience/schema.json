@@ -4,7 +4,8 @@
   "info": {
     "singularName": "experience",
     "pluralName": "experiences",
-    "displayName": "Experience"
+    "displayName": "Experience",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -31,6 +32,14 @@
     },
     "title": {
       "type": "string"
+    },
+    "companyTitle": {
+      "type": "string"
+    },
+    "achievements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::achievement.achievement"
     }
   }
 }

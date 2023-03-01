@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_sections_sections_personalexperiences",
+  "info": {
+    "displayName": "Sections.personalexperience"
+  },
+  "options": {},
+  "attributes": {
+    "experiences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::experience.experience"
+    }
+  }
+}

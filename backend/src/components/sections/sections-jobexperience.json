@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_sections_sections_jobexperiences",
+  "info": {
+    "displayName": "Sections.jobexperience"
+  },
+  "options": {},
+  "attributes": {
+    "experiences": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::experience.experience"
+    }
+  }
+}

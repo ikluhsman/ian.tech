@@ -9,7 +9,6 @@
         <li><span id="linkto-footer" class="cursor-pointer underline" @click="idLinkClick">contact</span></li>
         <li><nuxt-link to="/history">history</nuxt-link></li>
       </ul>
-      <h6 class="m-0">if you are hiring please see <nuxt-link to="/resume">my resume</nuxt-link></h6>
     </nav>
   </section>
 </template>

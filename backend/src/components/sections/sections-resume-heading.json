@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_sections_sections_resume_headings",
+  "info": {
+    "displayName": "Sections.resumeHeading"
+  },
+  "options": {},
+  "attributes": {
+    "headline": {
+      "type": "string"
+    }
+  }
+}

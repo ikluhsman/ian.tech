@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "resumes",
+  "info": {
+    "singularName": "resume",
+    "pluralName": "resumes",
+    "displayName": "Resume",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "jobexperience": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.sections-jobexperience"
+    },
+    "heading": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.sections-resume-heading"
+    }
+  }
+}

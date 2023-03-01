@@ -1,10 +1,10 @@
 <template>
   <color-scheme placeholder="" tag="span">
-    <arrow-button id="top-button" @click="scrollToTop" class="opacity-0 fixed bottom-0 right-6 md:right-12 "/>
-    <div>
+    <arrow-button id="top-button" @click="scrollToTop" class="opacity-0 fixed bottom-0 right-6 md:right-12"/>
+    <div class="mt-2">
       <div class="flex justify-center">
         <div class="flex w-full py-1/2">
-          <theme-selector class="absolute right-2 top-2" />
+          <theme-selector class="absolute right-2 top-2 mt-2" />
         </div>
       </div>
       <div :class="'px-4 md:flex ' + justification">

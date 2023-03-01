@@ -41,30 +41,30 @@ h6 {
   color: $accent-color;
 }
 
-h1 {
-  @apply text-6xl;
-}
+// h1 {
+//   @apply text-6xl;
+// }
 
-h2 {
-  @apply text-5xl;
-}
+// h2 {
+//   @apply text-5xl;
+// }
 
-h3 {
-  @apply text-3xl;
-  @include cursive-font;
-}
+// h3 {
+//   @apply text-3xl;
+//   @include cursive-font;
+// }
 
-h4 {
-  @apply text-xl;
-}
+// h4 {
+//   @apply text-xl;
+// }
 
-h5 {
-  @apply text-lg;
-}
+// h5 {
+//   @apply text-lg;
+// }
 
-h6 {
-  @apply text-base;
-}
+// h6 {
+//   @apply text-base;
+// }
 
 a {
   @apply text-gray-900 dark:text-gray-50 underline;

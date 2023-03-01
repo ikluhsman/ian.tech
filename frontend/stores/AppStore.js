@@ -16,7 +16,7 @@ export const useAppStore = defineStore("AppStore", {
       const res = await find("homepage", { populate: [ "intro", "news" ] });
       this.homePage = res.data;
     },
-    async fetchResumePage() {
+    async fetchExperiences() {
       const { find } = useStrapi();
       const res = await find("experiences");
       let newarr = res.data.sort(function (a, b) {
