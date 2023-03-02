@@ -20,24 +20,35 @@ export default defineNuxtPlugin(() => {
   markd.use(prism);
   
   markd.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-    var hIndex = tokens[idx].attrIndex('href');
+    let hIndex = tokens[idx].attrIndex('href');
+    
     if (hIndex < 0) {
       // there is no href link
     } else {
       // there is an href link
       if (tokens[idx].attrs[hIndex][1].startsWith('http')) {
-        var aIndex = tokens[idx].attrIndex('target');
+        let aIndex = tokens[idx].attrIndex('target');
         if (aIndex < 0) {
           tokens[idx].attrPush(['target', '_blank']); // target attr doesn't exist, so add new attribute
         } else {
           tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
         }
-        return defaultRender(tokens, idx, options, env, self);
-      } else {
-        return defaultRender(tokens, idx, options, env, self);
       }
+      
     }
+    return defaultRender(tokens, idx, options, env, self);
   };
+
+  markd.renderer.rules.bullet_list_open = function (tokens, idx, options, env, self) {
+    let classIdx = tokens[idx].attrIndex('class');
+    if (classIdx < 0) {
+      // you have no class
+      tokens[idx].attrPush(['class', 'list-disc']);
+    } else {
+      // classes are already defined so lets not monkey with it for now.
+    }
+    return defaultRender(tokens, idx, options, env, self);
+  }
   
   return {
     provide: {

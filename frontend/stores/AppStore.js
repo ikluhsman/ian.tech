@@ -7,7 +7,8 @@ export const useAppStore = defineStore("AppStore", {
       gitHubRepos: [],
       homePage: {},
       experiences: [],
-      historyPage: {}
+      historyPage: {},
+      resumePage: {}
     };
   },
   actions: {
@@ -24,13 +25,20 @@ export const useAppStore = defineStore("AppStore", {
       });
       this.experiences = newarr;
     },
+    async fetchResumePage() {
+      const { find } = useStrapi();
+      const res = await find("resume", { populate: ["jobexperience.experiences.achievements", "heading" ] });
+      console.log(res.data);
+      this.experiences = res.data.attributes.jobexperience.experiences.data;
+      this.resumePage = res.data;
+    },
     async fetchHistoryPage() {
       const { find } = useStrapi();
       const res = await find("history", { populate: "story" });
       this.historyPage = res.data;
     },
     async fetchRandomColor() {
-      const arrColors = ["#FF4143", "#FF9C04", "#07AD1B", "#2D7EF0", "#8922CB"];
+      const arrColors = ["#FF4F4F", "#FF8F0F", "#1F9900", "#1F8FFF", "#8F2FEF"];
       this.randomColor =
         arrColors[Math.floor(Math.random() * arrColors.length)];
     },
@@ -44,7 +52,6 @@ export const useAppStore = defineStore("AppStore", {
       }
     },
     async fetchGitHubRepos() {
-      const headers = useRequestHeaders();
       const arr = await useFetch(
         "https://api.github.com/users/ikluhsman/repos"
       ).then((repos) => {
@@ -83,6 +90,17 @@ export const useAppStore = defineStore("AppStore", {
     },
     getGitHubRepos() {
       return this.gitHubRepos;
+    },
+    getJobExperiences() {
+      let exps = this.experiences.sort(function (a, b) {
+        return (
+          new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
+        );
+      });
+      return exps;
+    },
+    getResumeHeading() {
+      return this.resumePage.attributes.heading;
     }
   },
 });

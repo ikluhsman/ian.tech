@@ -27,7 +27,7 @@ onMounted(() => {
     <div>
       <intro-section :htmlContent="introContent" />
       <nav-section />
-      <h6 class="m-0 text-xl">hiring? see <nuxt-link class="text-xl text-shadow-accent-color" to="/resume">my resume</nuxt-link></h6>
+      <h6 class="m-0 text-lg">hiring? see my <nuxt-link class="text-2xl text-shadow-accent-color" to="/resume">resume</nuxt-link></h6>
       <news-section :htmlContent="newsContent" :caption="newsCaption"/>
       <project-section :repos="repos" />
       <photo-section />

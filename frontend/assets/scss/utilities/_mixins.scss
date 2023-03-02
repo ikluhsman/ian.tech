@@ -17,3 +17,8 @@
   font-family: "Fira Code iScript Italic";
   font-style: italic;
 }
+
+@mixin regular-font {
+  font-family: "Fira Code iScript";
+  font-style: normal;
+}
