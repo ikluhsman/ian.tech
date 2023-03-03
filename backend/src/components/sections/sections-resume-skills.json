@@ -1,15 +1,15 @@
 {
-  "collectionName": "components_sections_sections_educations",
+  "collectionName": "components_sections_sections_resume_skills",
   "info": {
-    "displayName": "Sections.resumeEducation",
+    "displayName": "Sections.resumeSkills",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "experiences": {
+    "skills": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::experience.experience"
+      "target": "api::skill.skill"
     },
     "headline": {
       "type": "string"

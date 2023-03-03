@@ -4,7 +4,7 @@
 }
 
 @mixin display-font {
-  font-family: "Noto Sans";
+  font-family: "Prompt";
   font-style: normal;
 }
 
@@ -13,12 +13,11 @@
   font-style: normal;
 }
 
+@mixin monospace-bold-font {
+  font-family: "Fira Code iScript Bold"
+}
+
 @mixin cursive-font {
   font-family: "Fira Code iScript Italic";
   font-style: italic;
-}
-
-@mixin regular-font {
-  font-family: "Fira Code iScript";
-  font-style: normal;
 }

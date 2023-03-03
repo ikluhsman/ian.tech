@@ -14,18 +14,21 @@
 }
 
 @font-face {
-  font-family: "Flottflott";
-  src: local("Flottflott"),
-    url("/fonts/Flottflott-Regular.ttf") format("truetype");
+  font-family: "Fira Code iScript Bold";
+  src: local("Fira Code iScript"),
+    url("/fonts/FiraCodeTwoiScript-Bold.ttf") format("truetype");
 }
 
 .font-cursive {
   @include cursive-font;
 }
 .font-monospace {
-  @include regular-font;
+  @include monospace-font;
 }
-
+.text-shadow-accent-color { 
+  text-shadow: $accent-color 0 0 0.5em;
+  color: $accent-color;
+}
 body {
   @apply leading-6 text-gray-1000 dark:text-gray-50;
   @include default-font;
@@ -37,34 +40,33 @@ h3,
 h4,
 h5,
 h6 {
-  @include monospace-font;
+  @include display-font;
   color: $accent-color;
 }
 
-// h1 {
-//   @apply text-6xl;
-// }
+h1 {
+  @apply text-4xl;
+}
 
-// h2 {
-//   @apply text-5xl;
-// }
+h2 {
+  @apply text-3xl;
+}
 
-// h3 {
-//   @apply text-3xl;
-//   @include cursive-font;
-// }
+h3 {
+  @apply text-2xl;
+}
 
-// h4 {
-//   @apply text-xl;
-// }
+h4 {
+  @apply text-xl;
+}
 
-// h5 {
-//   @apply text-lg;
-// }
+h5 {
+  @apply text-lg;
+}
 
-// h6 {
-//   @apply text-base;
-// }
+h6 {
+  @apply text-base;
+}
 
 a {
   @apply text-gray-900 dark:text-gray-50 underline;

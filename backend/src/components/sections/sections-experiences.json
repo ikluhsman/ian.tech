@@ -1,7 +1,8 @@
 {
-  "collectionName": "components_sections_sections_jobexperiences",
+  "collectionName": "components_sections_sections_experiences",
   "info": {
-    "displayName": "Sections.jobexperience"
+    "displayName": "Sections.resumeExperiences",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -9,6 +10,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::experience.experience"
+    },
+    "headline": {
+      "type": "string"
     }
   }
 }

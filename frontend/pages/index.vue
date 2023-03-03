@@ -30,6 +30,7 @@ onMounted(() => {
       <h6 class="m-0 text-lg">hiring? see my <nuxt-link class="text-2xl text-shadow-accent-color" to="/resume">resume</nuxt-link></h6>
       <news-section :htmlContent="newsContent" :caption="newsCaption"/>
       <project-section :repos="repos" />
+      <div><h2>pen section</h2>Here are a few of my CodePens!</div>
       <photo-section />
       <footer-section />
     </div>

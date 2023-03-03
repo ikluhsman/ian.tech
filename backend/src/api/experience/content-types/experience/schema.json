@@ -36,10 +36,17 @@
     "companyTitle": {
       "type": "string"
     },
+    "skills": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "experience"
+    },
     "achievements": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::achievement.achievement"
+      "target": "api::achievement.achievement",
+      "mappedBy": "experience"
     }
   }
 }

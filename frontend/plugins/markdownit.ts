@@ -43,7 +43,7 @@ export default defineNuxtPlugin(() => {
     let classIdx = tokens[idx].attrIndex('class');
     if (classIdx < 0) {
       // you have no class
-      tokens[idx].attrPush(['class', 'list-disc']);
+      tokens[idx].attrPush(['class', 'list-disc leading-6']);
     } else {
       // classes are already defined so lets not monkey with it for now.
     }

@@ -1,42 +1,13 @@
-# Nuxt 3 Minimal Starter
+# ian.tech
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## HI
 
-## Setup
+ian.tech is my personal website. Here you'll find my resume, and some info about me.
 
-Make sure to install the dependencies:
+## Site Development
 
-```bash
-# yarn
-yarn install
+## Inspiration
 
-# npm
-npm install
+I built this site by hand, not using any kind of content manager, its **mostly** my code. I am not a great creative designer by any means, so naturally I stole the site's creative design from someone else. Lucie Harberer [@lihbr](https://lihbr.com) inspired the design, look, and feel of the site, and I took ideas from Lucie's page and created my own thing. No code was copied from the project, only design concepts.
 
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+So that said, I was inspired by Lucie's design, but the inspiration for creating a personal website was more my response to going stir-crazy. I have been working independently since 2018 and while that's been nice during the pandemic, I would like to find another niche in the tech industry. The real reason: I miss creating things with other people.

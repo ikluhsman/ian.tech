@@ -7,14 +7,19 @@ definePageMeta({
   layout: "resume",
 });
 const appStore = useAppStore();
-// await appStore.fetchExperiences();
 await appStore.fetchResumePage();
-const experiences = computed(() => {
-  return appStore.getJobExperiences;
+const resumePage = computed(() => {
+  return appStore.getResumePage;
+})
+const experienceSection = computed(() => {
+  return appStore.getResumePage_Experiences;
 });
-const heading = computed(() => {
-  return appStore.getResumeHeading;
+const educationSection = computed(() => {
+  return appStore.getResumePage_Education;
 });
+const skillsSection = computed(() => {
+  return appStore.getResumePage_Skills;
+})
 function formatDate(dateString, format) {
   const date = dayjs(dateString);
   return date.format(format);
@@ -33,88 +38,137 @@ function toggleMenu(event, e) {
         el.querySelector("#accordion-content-" + el.id.split("-")[2])
       );
       el.classList.toggle("active");
-      // change arrow icon back down
-      // let iconUpEl = document.getElementById("icon-up-" + el.id.split("-")[2]);
-      // iconUpEl.classList.toggle("hidden");
-      // let iconDownEl = document.getElementById(
-      //   "icon-down-" + el.id.split("-")[2]
-      // );
-      // iconDownEl.classList.toggle("hidden");
       Flip.from(state);
-      lastHeight = el.offsetHeight; // height of the last thing expanded
+      lastHeight = el.offsetHeight; // height of the last thing expanded, for offsetting scroll position
     }
   }
   // expand the thing you clicked
   const el = document.getElementById("accordion-li-" + e.id);
   let state = Flip.getState(el.querySelector("#accordion-content-" + e.id));
   el.classList.toggle("active");
-  const thisHeight = el.offsetHeight;
-  // change arrow icon up
-  // let iconUpEl = document.getElementById("icon-up-" + e.id);
-  // iconUpEl.classList.toggle("hidden");
-  // let iconDownEl = document.getElementById("icon-down-" + e.id);
-  // iconDownEl.classList.toggle("hidden");
   Flip.from(state);
   // scroll to the thing you clicked
   gsap.to(window, {
     duration: 0.5,
-    scrollTo: { y: "#" + el.id, offsetY: lastHeight },
-  }); // need to improve finding correct scroll position, offset y by the previous height of the content
+    scrollTo: { y: "#" + el.id, offsetY: lastHeight + 100 },
+  });
 }
+
 </script>
 <template>
-  <div class="py-8 container mx-auto">
-    <div class="relative">
-      <p class="p-2 text-shadow-accent-color text-lg">{{ heading.headline }}</p>
+  <div class="mx-auto">
+    <section class="experience-section relative">
+      <h3 class="text-shadow-accent-color">{{ resumePage.attributes.experiences.headline }}</h3>
       <ul class="list-none p-0">
-        <li v-for="(e, k) in experiences" :key="k" :id="'accordion-li-' + e.id" class="accordion-group mb-8">
-          <div class="flex group" @click="toggleMenu($event, e)">
-              <h5 class="self-start m-0 text-base font-bold text-gray-900 dark:text-gray-50 highlight p-2 rounded-lg opacity-85">
-                {{ formatDate(e.attributes.startDate, "YYYY") }}
-              </h5>
-            <div class="flex flex-col items-center justify-stretch">
-              <div
-                class="bg-accent-color group-hover:bg-accent-color rounded-full h-4 w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
-              <div class="bg-accent-color h-[90%] w-1 opacity-50 dark:opacity-80" />
-            </div>
-            <div class="flex-1 z-10">
-              <div class="order-1 space-y-1 rounded-lg shadow-only transition-ease lg:w-10/12 pl-6">
-                <h5 class="m-0 font-bold md:text-lg text-gray-900 dark:text-gray-50 md:whitespace-nowrap highlight">
-                  {{ e.attributes.title }}
-                </h5>
-                <h4 v-if="e.attributes.company === 'ian.tech'"
-                  class="text-gray-900 dark:text-gray-50 text-xl md:whitespace-nowrap highlight opacity-98 p-0 m-0">
-                  {{ e.attributes.company.split(".")[0]
-                  }}<span id="site-logo" class="accent-color text-shadow-accent-color text-2xl">.{{
-  e.attributes.company.split(".")[1] }}</span>
-                </h4>
-                <h4 v-if="e.attributes.company !== 'ian.tech'"
-                  class="text-gray-900 dark:text-gray-50 opacity-98 highlight p-0 m-0">
-                  {{ e.attributes.company }}
-                </h4>
-                <icon v-for="achievement in e.attributes.achievements.data" :name="achievement.attributes.iconesName"
-                class="m-0.5 h-6 w-6" />
-                <!-- <button v-if="e.attributes.highlights"
-                          class="accordion-button cursor-pointer bg-transparent w-auto border-solid border-gray-300 dark:border-gray-700 rounded-lg p-1 flex items-center">
-                          <icon :id="'icon-up-' + e.id" name="lucide:arrow-up" class="text-gray-900 dark:text-gray-50 hidden" />
-                          <icon :id="'icon-down-' + e.id" name="lucide:arrow-down"
-                            class="text-gray-900 dark:text-gray-50 visible" />
-                          <span
-                            class="ml-2 text-gray-900 dark:text-gray-50 opacity-80 text-shadow-accent-color">highlights</span>
-                        </button> -->
+        <li v-for="(e, k) in appStore.getResumePage_Experiences" :key="k" :id="'accordion-li-' + e.id"
+          class="accordion-group mb-4">
+          <div class="flex group cursor-pointer" @click="toggleMenu($event, e)">
 
+            <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:mr-4">
+              <div
+                class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
+              <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
+            </div>
+
+            <div class="z-10 w-full">
+              <div class="order-1 shadow-only transition-ease ">
+                <div class="flex justify-between text-base">
+                  <h6 class="font-semibold text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight m-0">
+                    {{ e.attributes.title }}
+                  </h6>
+                  <span class="font-bold highlight opacity-85 whitespace-nowrap">
+                    {{ formatDate(e.attributes.startDate, "YYYY") }} - {{ formatDate(e.attributes.endDate, "YYYY") }}
+                  </span>
+                </div>
+                <!-- ian.tech conditional to format my logo :) -->
+                <h6 v-if="e.attributes.company === 'ian.tech'"
+                  class="text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight opacity-98 p-0 ml-2 m-0">
+                  @ {{ e.attributes.company.split(".")[0] }}<span id="site-logo"
+                    class="accent-color text-shadow-accent-color text-xl">.{{ e.attributes.company.split(".")[1]
+                    }}</span>
+                </h6>
+                <!-- anything *not* ian.tech company -->
+                <span v-if="e.attributes.company !== 'ian.tech'" class="highlight p-0 m-0 tracking-tight ml-2">
+                  @<span class="font-semibold">{{ e.attributes.company }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div :id="'accordion-content-' + e.id" class="h-0 overflow-hidden accordion-content">
+            <!-- <p class="text-gray-900 font-semibold ml-4 dark:text-gray-50">
+              {{ e.attributes.summary }}
+            </p> -->
+            <div class="highlight-content pt-4" v-html="formatContent(e.attributes.highlights)" />
+            <div class="mt-8 text-sm flex items-center" v-for="(s, k) in e.attributes.skills.data" :key="k">
+              <icon :name="s.attributes.iconesName" class="text-xl w-20" />
+              <div :id="'skill-description-' + e.id" class="skill-description ml-2 w-10/12">
+                <span>{{ s.attributes.description }}</span>
+              </div>
+            </div>
+          </div>
+          
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3 class="text-shadow-accent-color">{{ resumePage.attributes.education.headline }}</h3>
+      <ul class="list-none p-0">
+        <li v-for="(e, k) in appStore.getResumePage_Education" :key="k" :id="'accordion-li-' + e.id"
+          class="accordion-group mb-4">
+          <div class="flex group cursor-pointer" @click="toggleMenu($event, e)">
+
+            <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:mr-4">
+              <div
+                class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
+              <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
+            </div>
+
+            <div class="z-10 w-full">
+              <div class="order-1 shadow-only transition-ease ">
+                <div class="flex justify-between text-base">
+                  <h6 class="font-semibold text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight m-0">
+                    {{ e.attributes.title }}
+                  </h6>
+                  <span class="font-bold highlight opacity-85 whitespace-nowrap">
+                    {{ formatDate(e.attributes.startDate, "YYYY") }} - {{ formatDate(e.attributes.endDate, "YYYY") }}
+                  </span>
+                </div>
+                <!-- ian.tech conditional to format my logo :) -->
+                <h6 v-if="e.attributes.company === 'ian.tech'"
+                  class="text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight opacity-98 p-0 ml-2 m-0">
+                  @ {{ e.attributes.company.split(".")[0] }}<span id="site-logo"
+                    class="accent-color text-shadow-accent-color text-xl">.{{ e.attributes.company.split(".")[1]
+                    }}</span>
+                </h6>
+                <!-- anything *not* ian.tech company -->
+                <span v-if="e.attributes.company !== 'ian.tech'" class="highlight p-0 m-0 tracking-tight ml-2">
+                  @<span class="font-semibold">{{ e.attributes.company }}</span>
+                </span>
               </div>
             </div>
           </div>
           <div :id="'accordion-content-' + e.id" class="h-0 overflow-hidden accordion-content">
-            <p class="text-gray-900 font-semibold ml-4 py-4 dark:text-gray-50">
+            <p class="text-gray-900 font-semibold ml-4 dark:text-gray-50">
               {{ e.attributes.summary }}
             </p>
-            <div class="highlight-content text-base" v-html="formatContent(e.attributes.highlights)" />
+            <div class="highlight-content" v-html="formatContent(e.attributes.highlights)" />
+            <div class="mt-8 text-sm flex items-center" v-for="(s, k) in e.attributes.skills.data" :key="k">
+              <icon :name="s.attributes.iconesName" class="text-xl w-20" />
+              <div :id="'skill-description-' + e.id" class="skill-description ml-2 w-10/12">
+                <span>{{ s.attributes.description }}</span>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
-    </div>
+    </section>
+    <!-- <section class="mb-24">
+      <h3 class="text-shadow-accent-color self-start">{{ resumePage.attributes.skills.headline }}</h3>
+      <div class="flex flex-wrap gap-4 px-3 py-6 justify-center w-full">
+        <icon v-for="(e, k) in appStore.getResumePage_Skills" :name="e.attributes.iconesName" class="w-8 sm:w-12" />
+      </div>
+    </section> -->
   </div>
 </template>
 <style scoped>
@@ -136,7 +190,7 @@ function toggleMenu(event, e) {
   height: auto;
 }
 
-.highlight-content ul {
-  @apply list-none;
+.active-icon {
+  height: auto;
 }
 </style>

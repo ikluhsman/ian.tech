@@ -16,10 +16,11 @@
   background-color: $accent-color;
 }
 
-.text-shadow-accent-color { 
-  text-shadow: $accent-color 0 0 0.5em;
-  color: $accent-color;
+.border-accent-color {
+    --tw-border-opacity: 1;
+    border-color: var(--accent-color);
 }
+
 /* global browser scrollbar styling */
 body {
   @apply bg-gray-100 dark:bg-gray-1000;

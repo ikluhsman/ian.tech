@@ -6,30 +6,34 @@ export const useAppStore = defineStore("AppStore", {
       justification: "justify-center",
       gitHubRepos: [],
       homePage: {},
-      experiences: [],
       historyPage: {},
-      resumePage: {}
+      resumePage: {},
+      gitHubProfile: "",
+      aboutThisPage: "",
     };
   },
   actions: {
     async fetchHomePage() {
       const { find } = useStrapi();
-      const res = await find("homepage", { populate: [ "intro", "news" ] });
+      const res = await find("homepage", { populate: ["intro", "news"] });
       this.homePage = res.data;
-    },
-    async fetchExperiences() {
-      const { find } = useStrapi();
-      const res = await find("experiences");
-      let newarr = res.data.sort(function (a, b) {
-        return new Date(b.attributes.startDate) - new Date(a.attributes.startDate);
-      });
-      this.experiences = newarr;
     },
     async fetchResumePage() {
       const { find } = useStrapi();
-      const res = await find("resume", { populate: ["jobexperience.experiences.achievements", "heading" ] });
+      const res = await find("resume", {
+        populate: [
+          "heading",
+          "experiences.experiences",
+          "experiences.experiences.achievements",
+          "experiences.experiences.skills",
+          "education.experiences",
+          "education.experiences.achievements",
+          "education.experiences.skills",
+          "skills.skills",
+        ],
+      });
+      // this.experiences = res.data.attributes.experiences.experiences.data;
       console.log(res.data);
-      this.experiences = res.data.attributes.jobexperience.experiences.data;
       this.resumePage = res.data;
     },
     async fetchHistoryPage() {
@@ -38,7 +42,7 @@ export const useAppStore = defineStore("AppStore", {
       this.historyPage = res.data;
     },
     async fetchRandomColor() {
-      const arrColors = ["#FF4F4F", "#FF8F0F", "#1F9900", "#1F8FFF", "#8F2FEF"];
+      const arrColors = ["#FF4F4F", "#FF6F0F", "#1F9900", "#1F8FFF", "#8F2FEF"];
       this.randomColor =
         arrColors[Math.floor(Math.random() * arrColors.length)];
     },
@@ -68,7 +72,7 @@ export const useAppStore = defineStore("AppStore", {
               fork: r.fork,
               clone_url: r.clone_url,
               html_url: r.html_url,
-              language: r.language
+              language: r.language,
             };
           });
       });
@@ -77,10 +81,78 @@ export const useAppStore = defineStore("AppStore", {
       });
       this.gitHubRepos = newarr;
     },
+    async fetchGitHubProfile() {
+      const profile = await useFetch(
+        "https://raw.githubusercontent.com/ikluhsman/ikluhsman/main/README.md"
+      ).then((data) => {
+        return data.data.value;
+      });
+      this.gitHubProfile = profile;
+    },
+    async fetchAboutThisPage() {
+      const about = await useFetch(
+        "https://raw.githubusercontent.com/ikluhsman/ian.tech/main/README.md"
+      ).then((data) => {
+        return data.data.value;
+      });
+      this.aboutThisPage = about;
+    }
   },
   getters: {
+    getAboutThisPage() {
+      return this.aboutThisPage;
+    },
+    getGitHubProfile() {
+      return this.gitHubProfile;
+    },
     getHomepage() {
       return this.homePage;
+    },
+    getResumePage() {
+      console.log(this.resumePage);
+      return this.resumePage;
+    },
+    getResumePage_Experiences() {
+      let exps = this.resumePage.attributes.experiences.experiences.data.sort(
+        function (a, b) {
+          return (
+            new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
+          );
+        }
+      );
+      return exps;
+    },
+    getResumePage_Experiences() {
+      let exps = this.resumePage.attributes.experiences.experiences.data.sort(
+        function (a, b) {
+          return (
+            new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
+          );
+        }
+      );
+      return exps;
+    },
+    getResumePage_Education() {
+      let exps = this.resumePage.attributes.education.experiences.data.sort(
+        function (a, b) {
+          return (
+            new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
+          );
+        }
+      );
+      return exps;
+    },
+    getResumePage_Skills() {
+      let exps = this.resumePage.attributes.skills.skills.data.sort(function (
+        a,
+        b
+      ) {
+        return (
+          new Date(b.attributes.dateAcquired) -
+          new Date(a.attributes.dateAcquired)
+        );
+      });
+      return exps;
     },
     getHistory() {
       return this.historyPage;
@@ -91,16 +163,5 @@ export const useAppStore = defineStore("AppStore", {
     getGitHubRepos() {
       return this.gitHubRepos;
     },
-    getJobExperiences() {
-      let exps = this.experiences.sort(function (a, b) {
-        return (
-          new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
-        );
-      });
-      return exps;
-    },
-    getResumeHeading() {
-      return this.resumePage.attributes.heading;
-    }
   },
 });

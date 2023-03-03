@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "achievements",
+  "collectionName": "skills",
   "info": {
-    "singularName": "achievement",
-    "pluralName": "achievements",
-    "displayName": "Achievement",
+    "singularName": "skill",
+    "pluralName": "skills",
+    "displayName": "Skill",
     "description": ""
   },
   "options": {
@@ -12,23 +12,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "name": {
       "type": "string"
     },
     "description": {
       "type": "text"
     },
-    "dateCompleted": {
+    "dateAcquired": {
       "type": "date"
-    },
-    "linkUrl": {
-      "type": "string"
-    },
-    "linkText": {
-      "type": "string"
-    },
-    "iconesName": {
-      "type": "string"
     },
     "image": {
       "type": "media",
@@ -41,11 +32,20 @@
         "audios"
       ]
     },
+    "iconesName": {
+      "type": "string"
+    },
     "experience": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::experience.experience",
-      "inversedBy": "achievements"
+      "inversedBy": "skills"
+    },
+    "linkText": {
+      "type": "string"
+    },
+    "linkUrl": {
+      "type": "string"
     }
   }
 }

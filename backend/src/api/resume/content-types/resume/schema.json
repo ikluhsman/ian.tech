@@ -12,15 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "jobexperience": {
+    "experiences": {
       "type": "component",
       "repeatable": false,
-      "component": "sections.sections-jobexperience"
+      "component": "sections.sections-experiences"
     },
-    "heading": {
+    "education": {
       "type": "component",
       "repeatable": false,
-      "component": "sections.sections-resume-heading"
+      "component": "sections.sections-education"
+    },
+    "skills": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.sections-resume-skills"
     }
   }
 }

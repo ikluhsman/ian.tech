@@ -25,11 +25,11 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Fira%20Sans",
+          href: "https://fonts.googleapis.com/css?family=Noto%20Sans",
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Merriweather",
+          href: "https://fonts.googleapis.com/css?family=Prompt",
         },
       ],
     },
@@ -56,7 +56,7 @@ export default defineNuxtConfig({
     },
   },
   strapi: {
-    url: "http://localhost:1337",
+    url: "http://172.30.1.66:1337",
   },
   typescript: {
     strict: true,
