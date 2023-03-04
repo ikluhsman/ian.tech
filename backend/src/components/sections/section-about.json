@@ -1,13 +1,16 @@
 {
   "collectionName": "components_sections_section_abouts",
   "info": {
-    "displayName": "Sections.about",
+    "displayName": "Sections.aboutPageAbout",
     "description": ""
   },
   "options": {},
   "attributes": {
     "content": {
       "type": "richtext"
+    },
+    "heading": {
+      "type": "string"
     }
   }
 }

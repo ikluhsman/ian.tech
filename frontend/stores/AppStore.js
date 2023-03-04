@@ -22,7 +22,6 @@ export const useAppStore = defineStore("AppStore", {
       const { find } = useStrapi();
       const res = await find("resume", {
         populate: [
-          "heading",
           "experiences.experiences",
           "experiences.experiences.achievements",
           "experiences.experiences.skills",
@@ -91,10 +90,11 @@ export const useAppStore = defineStore("AppStore", {
     },
     async fetchAboutThisPage() {
       const about = await useFetch(
-        "https://raw.githubusercontent.com/ikluhsman/ian.tech/main/README.md"
+        "https://raw.githubusercontent.com/ikluhsman/ian.tech/main/frontend/README.md"
       ).then((data) => {
         return data.data.value;
       });
+      console.log(about);
       this.aboutThisPage = about;
     }
   },

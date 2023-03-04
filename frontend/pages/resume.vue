@@ -63,13 +63,7 @@ function toggleMenu(event, e) {
         <li v-for="(e, k) in appStore.getResumePage_Experiences" :key="k" :id="'accordion-li-' + e.id"
           class="accordion-group mb-4">
           <div class="flex group cursor-pointer" @click="toggleMenu($event, e)">
-
-            <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:mr-4">
-              <div
-                class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
-              <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
-            </div>
-
+            
             <div class="z-10 w-full">
               <div class="order-1 shadow-only transition-ease ">
                 <div class="flex justify-between text-base">
@@ -92,6 +86,11 @@ function toggleMenu(event, e) {
                   @<span class="font-semibold">{{ e.attributes.company }}</span>
                 </span>
               </div>
+            </div>
+            <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:ml-4">
+              <div
+                class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
+              <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
             </div>
           </div>
 

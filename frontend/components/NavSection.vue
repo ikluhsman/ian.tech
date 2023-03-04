@@ -7,7 +7,6 @@
         <li><span id="linkto-projects" class="cursor-pointer underline" @click="idLinkClick">projects</span></li>
         <li><span id="linkto-photos" class="cursor-pointer underline" @click="idLinkClick">photos</span></li>
         <li><span id="linkto-footer" class="cursor-pointer underline" @click="idLinkClick">contact</span></li>
-        <li><nuxt-link to="/history">history</nuxt-link></li>
       </ul>
     </nav>
   </section>
@@ -22,3 +21,8 @@ function idLinkClick(e) {
   });
 }
 </script>
+<style scoped>
+h2 {
+  @apply text-gray-1000 dark:text-gray-100;
+}
+</style>

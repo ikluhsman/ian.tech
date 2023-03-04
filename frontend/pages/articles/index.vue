@@ -1,9 +1,9 @@
 <template>
   <div>
-  <h1>news</h1>
+  <h1>the archives</h1>
   </div>
 </template>
-<script setup lang="ts">
+<script setup>
 
 
 </script>

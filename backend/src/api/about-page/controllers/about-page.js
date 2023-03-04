@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * contact controller
+ * about-page controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::contact.contact');
+module.exports = createCoreController('api::about-page.about-page');

@@ -1,6 +1,5 @@
 <template>
   <div>
-  <h1>about this page</h1>
     <div class="aboutthispage-content" v-html="formatContent(aboutThisPage)" />
   <h1>about me</h1>
     <div class="githubprofile-content" v-html="formatContent(gitHubProfile)" />

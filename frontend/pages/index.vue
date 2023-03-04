@@ -38,10 +38,4 @@ onMounted(() => {
 </template>
 <style scoped>
 section { @apply pb-4; }
-section nav h2:first-of-type {
-  @apply text-gray-1000 dark:text-gray-100;
-}
-section:last-of-type h2 {
-  @apply text-gray-1000 dark:text-gray-100;
-}
 </style>

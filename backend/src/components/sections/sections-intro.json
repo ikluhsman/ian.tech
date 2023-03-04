@@ -1,7 +1,8 @@
 {
   "collectionName": "components_sections_sections_intros",
   "info": {
-    "displayName": "Sections.intro"
+    "displayName": "Sections.homePageIntro",
+    "description": ""
   },
   "options": {},
   "attributes": {

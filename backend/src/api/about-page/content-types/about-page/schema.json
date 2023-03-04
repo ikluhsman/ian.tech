@@ -1,10 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "histories",
+  "collectionName": "about_pages",
   "info": {
-    "singularName": "history",
-    "pluralName": "histories",
-    "displayName": "History",
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "AboutPage",
     "description": ""
   },
   "options": {
@@ -12,10 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "story": {
+    "aboutThisPage": {
       "type": "component",
       "repeatable": false,
-      "component": "sections.sections-story"
+      "component": "sections.section-about"
     }
   }
 }
