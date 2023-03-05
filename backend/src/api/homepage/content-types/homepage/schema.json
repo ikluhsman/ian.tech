@@ -12,30 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "intro": {
-      "type": "component",
-      "repeatable": false,
-      "component": "sections.sections-intro"
-    },
-    "news": {
-      "type": "component",
-      "repeatable": false,
-      "component": "sections.section-news"
-    },
     "meta": {
       "type": "component",
       "repeatable": false,
       "component": "shared.default-seo"
     },
-    "projects": {
+    "sections": {
       "type": "component",
-      "repeatable": false,
-      "component": "sections.sections-home-page-projects"
-    },
-    "photos": {
-      "type": "component",
-      "repeatable": false,
-      "component": "sections.sections-home-page-photos"
+      "repeatable": true,
+      "component": "sections.sections-home-page-section"
     }
   }
 }

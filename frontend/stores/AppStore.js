@@ -6,11 +6,11 @@ export const useAppStore = defineStore("AppStore", {
       justification: "justify-center",
       gitHubRepos: [],
       homePage: {},
-      historyPage: {},
+      homePageArticles: [],
+      homePagePhotos: [],
       resumePage: {},
       gitHubProfile: "",
       aboutThisPage: "",
-      homePageArticles: [],
     };
   },
   actions: {
@@ -25,8 +25,7 @@ export const useAppStore = defineStore("AppStore", {
     },
     async fetchHomePage() {
       const { find } = useStrapi();
-      const res = await find("homepage", { populate: [ "intro", "news", "projects", "photos" ] });
-      console.log(res.data);
+      const res = await find("homepage", { populate: ["sections"] });
       this.homePage = res.data;
     },
     async fetchResumePage() {
@@ -43,11 +42,6 @@ export const useAppStore = defineStore("AppStore", {
         ],
       });
       this.resumePage = res.data;
-    },
-    async fetchHistoryPage() {
-      const { find } = useStrapi();
-      const res = await find("history", { populate: "story" });
-      this.historyPage = res.data;
     },
     async fetchRandomColor() {
       const arrColors = ["#FF4F4F", "#FF6F0F", "#1F9900", "#1F8FFF", "#8F2FEF"];
@@ -107,22 +101,47 @@ export const useAppStore = defineStore("AppStore", {
     },
   },
   getters: {
+    getHomePageIntroSection() {
+      return this.homePage.attributes.sections.find((s) => {
+        return s.name === "intro";
+      });
+    },
+    getHomePageNewsSection() {
+      return this.homePage.attributes.sections.find((s) => {
+        return s.name === "news";
+      });
+    },
+    getHomePageProjectSection() {
+      return this.homePage.attributes.sections.find((s) => {
+        return s.name === "projects";
+      });
+    },
+    getHomePagePhotoSection() {
+      return this.homePage.attributes.sections.find((s) => {
+        return s.name === "photos";
+      });
+    },
     getAboutThisPage() {
       return this.aboutThisPage;
     },
     getHomePageArticles() {
       return this.homePageArticles;
     },
+    getHomePagePhotos() {
+      return this.homePagePhotos;
+    },
     getGitHubProfile() {
       return this.gitHubProfile;
     },
-    getHomepage() {
+    getHomePage() {
       return this.homePage;
     },
     getResumePage() {
       return this.resumePage;
     },
-
+    getHomePagePhotos() {
+      return this.homePagePhotos;
+    },
     getResumePage_Experiences() {
       let exps = this.resumePage.attributes.experiences.experiences.data.sort(
         function (a, b) {
@@ -164,9 +183,6 @@ export const useAppStore = defineStore("AppStore", {
         );
       });
       return exps;
-    },
-    getHistory() {
-      return this.historyPage;
     },
     getAccentColor() {
       return this.randomColor;

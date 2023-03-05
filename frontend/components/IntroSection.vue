@@ -1,19 +1,20 @@
 <template>
   <div>
-    <h1>{{ headline }}</h1>
+    <h1>{{ thisSection.headline }}</h1>
     <section id="intro" v-html="htmlContent" />
   </div>
 </template>
 <script setup>
+import { useAppStore } from '~~/stores/AppStore.js';
 defineProps({
-  headline: {
-    type: String,
-    default: ""
-  },
-  htmlContent: {
-    type: String,
-    default: "",
+  mainSection: {
+    type: Object,
+    default: {},
   },
 });
+const appStore = useAppStore();
+const { $mdRenderer } = useNuxtApp();
+const thisSection = appStore.getHomePageIntroSection;
+const htmlContent = $mdRenderer.render(thisSection.content);
 </script>
 

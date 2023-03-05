@@ -1,7 +1,7 @@
 <template>
   <section id="news">
-    <h2>news</h2>
-    <p>{{ caption }}</p>
+    <h2>{{ thisSection.headline }}</h2>
+    <div v-html="htmlContent" />
     <div>
       <ul class="list-none p-0">
         <li v-for="a in articles" :key="a.id">
@@ -13,22 +13,13 @@
   </section>
 </template>
 <script setup>
+import { useAppStore } from '~~/stores/AppStore.js';
 import dayjs from 'dayjs';
-defineProps({
-  htmlContent: {
-    type: String,
-    default: "",
-  },
-  articles: {
-    type: Array,
-    default: "",
-  },
-  caption: {
-    type: String,
-    default: "",
-  }
-});
-
+const appStore = useAppStore();
+const { $mdRenderer } = useNuxtApp();
+const thisSection = appStore.getHomePageNewsSection;
+const htmlContent = $mdRenderer.render(thisSection.content);
+const articles = appStore.getHomePageArticles;
 function formatDate(dateString, format) {
   const date = dayjs(dateString);
   return date.format(format);

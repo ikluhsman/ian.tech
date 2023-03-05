@@ -1,8 +1,7 @@
 <template>
   <section id="projects">
-    <h2>projects</h2>
-    <p>Aside from my job, I write and maintain code for my own enjoyment. Here are some of my projects
-      from <a href="https://github.com/ikluhsman" target="_blank">GitHub</a>.</p>
+    <h2>{{ thisSection.headline }}</h2>
+    <div v-html="htmlContent" />
     <div>
       <ul class="p-0 list-none">
         <li v-for="(r, k) in repos" :key="k" class="pb-1 flex gap-2">
@@ -15,15 +14,15 @@
     </div>
   </section>
 </template>
-<script setup lang="ts">
-import dayjs from "dayjs";
-defineProps({
-  repos: {
-    type: Array,
-    default: [],
-  },
-});
-function formatDate(dateString: string | number | Date | dayjs.Dayjs | null | undefined) {
+<script setup >
+import { useAppStore } from '~~/stores/AppStore.js';
+import dayjs from 'dayjs';
+const appStore = useAppStore();
+const { $mdRenderer } = useNuxtApp();
+const thisSection = appStore.getHomePageProjectSection;
+const repos = appStore.getGitHubRepos;
+const htmlContent = $mdRenderer.render(thisSection.content);
+function formatDate(dateString) {
   const date = dayjs(dateString);
   return date.format("MM/DD/YYYY");
 }
