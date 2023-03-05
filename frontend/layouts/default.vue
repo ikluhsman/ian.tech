@@ -11,11 +11,11 @@
           <theme-selector class="absolute right-2 top-2 mt-2" />
         </div>
       </div>
-      <div :class="'px-4 md:flex ' + justification">
+      <div :class="'px-4 sm:flex ' + justification">
         <div>
           <site-logo />
           <div>
-            <div class="mt-8 w-11/12 sm:w-140 md:w-160">
+            <div class="mt-8 sm:w-140 md:w-160">
               <nuxt-link href="/" class="no-underline" v-if="route.path !== '/'">
                 {{ '\< ' }}
                     <span class="underline">{{ ' index' }}</span>

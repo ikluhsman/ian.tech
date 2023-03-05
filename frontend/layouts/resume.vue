@@ -42,7 +42,7 @@ onUnmounted(() => {
 </script>
 <template>
   <color-scheme placeholder="" tag="span">
-    <arrow-button id="top-button" @click="scrollToTop" class="opacity-0 fixed bottom-0 right-6 md:right-12" />
+    <arrow-button id="top-button" @click="scrollToTop" class="opacity-0 fixed bottom-0 right-8 md:right-16" />
     <div class="mt-2">
       <div class="flex justify-center">
         <div class="flex w-full py-1/2">
@@ -53,7 +53,7 @@ onUnmounted(() => {
         <div>
           <site-logo />
           <div>
-            <div class="mt-8 w-11/12 sm:w-140 md:w-160">
+            <div class="mt-8 sm:w-140 md:w-160">
               <nuxt-link href="/" class="no-underline" v-if="route.path !== '/'">
                 {{ '\< ' }}
                     <span class="underline">{{ ' index' }}</span>

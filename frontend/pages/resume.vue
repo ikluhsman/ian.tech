@@ -58,7 +58,7 @@ function toggleMenu(event, e) {
 <template>
   <div class="mx-auto">
     <section class="experience-section relative">
-      <h3 class="text-shadow-accent-color">{{ resumePage.attributes.experiences.headline }}</h3>
+      <h3>{{ resumePage.attributes.experiences.headline }}</h3>
       <ul class="list-none p-0">
         <li v-for="(e, k) in appStore.getResumePage_Experiences" :key="k" :id="'accordion-li-' + e.id"
           class="accordion-group mb-4">
@@ -111,7 +111,7 @@ function toggleMenu(event, e) {
       </ul>
     </section>
     <section>
-      <h3 class="text-shadow-accent-color">{{ resumePage.attributes.education.headline }}</h3>
+      <h3>{{ resumePage.attributes.education.headline }}</h3>
       <ul class="list-none p-0">
         <li v-for="(e, k) in appStore.getResumePage_Education" :key="k" :id="'accordion-li-' + e.id"
           class="accordion-group mb-4">

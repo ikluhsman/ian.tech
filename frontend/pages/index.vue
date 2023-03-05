@@ -13,8 +13,7 @@ onMounted(() => {
   <div>
     <div>
       <intro-section class="mt-16" />
-      <nav-section />
-      <h6 class="m-0 text-lg">hiring? see my <nuxt-link class="text-2xl text-shadow-accent-color" to="/resume">resum&egrave;</nuxt-link></h6>
+      <nav-section />      
       <news-section />
       <project-section />
       <photo-section />

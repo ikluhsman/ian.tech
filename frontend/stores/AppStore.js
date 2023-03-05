@@ -17,12 +17,11 @@ export const useAppStore = defineStore("AppStore", {
     async fetchArticle() {
       const { find } = useStrapi();
       const route = useRoute();
-      const res = await findOne("articles", {
+      const res = await find("articles", {
         populate: ["image"],
-        
+        "filters[slug][$containsi]": route.params.title,
       });
-      console.log(this.data);
-      this.article = res.data;
+      this.article = res.data[0];
     },
     async fetchHomePageArticles() {
       // n is the number of articles that should be fetched.
@@ -112,7 +111,6 @@ export const useAppStore = defineStore("AppStore", {
   },
   getters: {
     getArticle() {
-      console.log(this.article);
       return this.article;
     },
     getHomePageIntroSection() {
