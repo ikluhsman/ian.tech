@@ -16,7 +16,7 @@
           <site-logo />
           <div>
             <div class="mt-8 w-11/12 md:w-140">
-              <nuxt-link href="/" v-if="route.path !== '/'">go back</nuxt-link>
+              <nuxt-link href="/" v-if="route.path !== '/'">{{ '\<\=' }} index</nuxt-link>
               <slot />
             </div>
           </div>
@@ -35,6 +35,8 @@ const justification = computed(() => {
   return appStore.justification;
 });
 const route = useRoute();
+const router = useRouter();
+
 const throttleScroll = _.throttle(function () {
   if (window.scrollY > 175) {
     unhideTopButton();
@@ -50,6 +52,7 @@ onMounted(() => {
   }
   let root = document.querySelector(":root");
   root.style.setProperty("--accent-color", appStore.randomColor);
+  console.log(router);
 });
 
 onUnmounted(() => {

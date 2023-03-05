@@ -1,8 +1,9 @@
 <template>
   <div>
-    <div class="aboutthispage-content" v-html="formatContent(aboutThisPage)" />
-  <h1>about me</h1>
+    <h1 id="about-me">about me</h1>
     <div class="githubprofile-content" v-html="formatContent(gitHubProfile)" />
+    <h1 id="about-this-page">about this page</h1>
+    <div class="aboutthispage-content" v-html="formatContent(aboutThisPage)" />
   </div>
 </template>
 <script setup>

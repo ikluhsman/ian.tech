@@ -31,8 +31,6 @@ export const useAppStore = defineStore("AppStore", {
           "skills.skills",
         ],
       });
-      // this.experiences = res.data.attributes.experiences.experiences.data;
-      console.log(res.data);
       this.resumePage = res.data;
     },
     async fetchHistoryPage() {
@@ -94,7 +92,6 @@ export const useAppStore = defineStore("AppStore", {
       ).then((data) => {
         return data.data.value;
       });
-      console.log(about);
       this.aboutThisPage = about;
     }
   },
@@ -109,7 +106,6 @@ export const useAppStore = defineStore("AppStore", {
       return this.homePage;
     },
     getResumePage() {
-      console.log(this.resumePage);
       return this.resumePage;
     },
     getResumePage_Experiences() {
