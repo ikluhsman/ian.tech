@@ -85,7 +85,9 @@ node_modules
 *.log*
 .nitro
 .output
+.backup
 
+frontend/.backup
 frontend/.nuxt
 frontend/dist
 frontend/node_modules

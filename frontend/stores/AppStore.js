@@ -14,6 +14,16 @@ export const useAppStore = defineStore("AppStore", {
     };
   },
   actions: {
+    async fetchArticle() {
+      const { find } = useStrapi();
+      const route = useRoute();
+      const res = await findOne("articles", {
+        populate: ["image"],
+        
+      });
+      console.log(this.data);
+      this.article = res.data;
+    },
     async fetchHomePageArticles() {
       // n is the number of articles that should be fetched.
       const { find } = useStrapi();
@@ -93,7 +103,7 @@ export const useAppStore = defineStore("AppStore", {
     },
     async fetchAboutThisPage() {
       const about = await useFetch(
-        "https://raw.githubusercontent.com/ikluhsman/ian.tech/main/frontend/README.md"
+        "https://raw.githubusercontent.com/ikluhsman/ian.tech/main/README.md"
       ).then((data) => {
         return data.data.value;
       });
@@ -101,6 +111,10 @@ export const useAppStore = defineStore("AppStore", {
     },
   },
   getters: {
+    getArticle() {
+      console.log(this.article);
+      return this.article;
+    },
     getHomePageIntroSection() {
       return this.homePage.attributes.sections.find((s) => {
         return s.name === "intro";
