@@ -1,6 +1,4 @@
-# about ian.tech
-
-ian.tech is my personal website. Here you'll find my resume, and some info about me.
+ian.**tech** is my personal website. Here you'll find my resume, and some info about me.
 
 ## site development
 

@@ -17,7 +17,7 @@ const throttleScroll = _.throttle(function () {
   }
 }, 250);
 function unhideTopButton() {
-  gsap.to("#top-button", { duration: 0.6, opacity: 0.75, y: -50 })    
+  gsap.to("#top-button", { duration: 0.6, opacity: 0.75, y: -50 })
 }
 function hideTopButton() {
   gsap.to("#top-button", { duration: 0.6, opacity: 0, y: 50 });
@@ -42,7 +42,7 @@ onUnmounted(() => {
 </script>
 <template>
   <color-scheme placeholder="" tag="span">
-    <arrow-button id="top-button" @click="scrollToTop" class="opacity-0 fixed bottom-0 right-6 md:right-12"/>
+    <arrow-button id="top-button" @click="scrollToTop" class="opacity-0 fixed bottom-0 right-6 md:right-12" />
     <div class="mt-2">
       <div class="flex justify-center">
         <div class="flex w-full py-1/2">
@@ -54,7 +54,10 @@ onUnmounted(() => {
           <site-logo />
           <div>
             <div class="mt-8 w-11/12 sm:w-140 md:w-160">
-              <nuxt-link href="/" v-if="route.path !== '/'">go back</nuxt-link>
+              <nuxt-link href="/" class="no-underline" v-if="route.path !== '/'">
+                {{ '\< ' }}
+                    <span class="underline">{{ ' index' }}</span>
+              </nuxt-link>
               <slot />
             </div>
           </div>

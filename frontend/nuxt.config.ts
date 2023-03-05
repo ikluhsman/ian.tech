@@ -48,7 +48,7 @@ export default defineNuxtConfig({
     classSuffix: "",
     storageKey: "nuxt-color-mode",
   },
-  modules: ["@nuxtjs/color-mode", "@pinia/nuxt", "nuxt-icon", "@nuxtjs/strapi"],
+  modules: ["@nuxtjs/color-mode", "@pinia/nuxt", "nuxt-icon", "@nuxtjs/strapi", "@nuxt/image-edge"],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -57,6 +57,12 @@ export default defineNuxtConfig({
   },
   strapi: {
     url: "http://172.30.1.66:1337",
+  },
+  image: {
+    provider: "strapi",
+    strapi: {
+      baseURL: "http://172.30.1.66:1337",
+    },
   },
   typescript: {
     strict: true,

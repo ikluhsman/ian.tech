@@ -1,21 +1,32 @@
 <script setup>
-// tell the store to fetch data
 import { useAppStore } from "~~/stores/AppStore";
+const { $mdRenderer } = useNuxtApp();
+
+// go fetch
 const appStore = useAppStore();
 await appStore.fetchHomePage();
 await appStore.fetchGitHubRepos();
-// reference fetched data via computed methods
-const repos = computed(() => {
-  return appStore.getGitHubRepos;
-});
-const homePage = computed(() => {
-  return appStore.getHomepage;
-});
-// render some content from getters
-const { $mdRenderer } = useNuxtApp();
+await appStore.fetchHomePageArticles();
+
+// computed values
+const repos = appStore.getGitHubRepos;
+const homePage = appStore.getHomepage;
+const homePageArticles = appStore.getHomePageArticles;
+const homePagePhotos = appStore.gethomePagePhotos;
+
+const introHeadline = appStore.getHomepage.attributes?.intro.headline;
 const introContent = $mdRenderer.render(appStore.getHomepage.attributes?.intro.content);
+
+const newsHeadline = appStore.getHomepage.attributes?.news.headline;
 const newsContent = $mdRenderer.render(appStore.getHomepage.attributes?.news.content);
-const newsCaption = appStore.getHomepage.attributes?.news.caption;
+
+const projectsHeadline = appStore.getHomepage.attributes?.projects.headline;
+const projectsContent = $mdRenderer.render(appStore.getHomepage.attributes?.projects.content);
+
+const photosHeadline = appStore.getHomepage.attributes?.photos.headline;
+const photosContent = $mdRenderer.render(appStore.getHomepage.attributes?.photos.content);
+
+// lifecycle methods
 onMounted(() => {
   let root = document.querySelector(":root");
   root.style.setProperty("--accent-color", appStore.randomColor);
@@ -23,14 +34,12 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <h1 class="mt-24">{{ homePage?.attributes.intro.heading }}</h1>
     <div>
-      <intro-section :htmlContent="introContent" />
+      <intro-section class="mt-16" :headline="introHeadline" :htmlContent="introContent" />
       <nav-section />
       <h6 class="m-0 text-lg">hiring? see my <nuxt-link class="text-2xl text-shadow-accent-color" to="/resume">resume</nuxt-link></h6>
-      <news-section :htmlContent="newsContent" :caption="newsCaption"/>
+      <news-section :htmlContent="newsContent" :articles="homePageArticles" :caption="newsCaption"/>
       <project-section :repos="repos" />
-      <div><h2>pen section</h2>Here are a few of my CodePens!</div>
       <photo-section />
       <footer-section />
     </div>

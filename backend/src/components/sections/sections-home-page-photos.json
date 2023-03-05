@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_sections_home_page_photos",
+  "info": {
+    "displayName": "Sections.homePagePhotos"
+  },
+  "options": {},
+  "attributes": {
+    "headline": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

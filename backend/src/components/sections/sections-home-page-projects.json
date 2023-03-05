@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_sections_home_page_projects",
+  "info": {
+    "displayName": "Sections.homePageProjects",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "headline": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

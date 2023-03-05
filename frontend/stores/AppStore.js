@@ -10,12 +10,23 @@ export const useAppStore = defineStore("AppStore", {
       resumePage: {},
       gitHubProfile: "",
       aboutThisPage: "",
+      homePageArticles: [],
     };
   },
   actions: {
+    async fetchHomePageArticles() {
+      // n is the number of articles that should be fetched.
+      const { find } = useStrapi();
+      const res = await find("articles", {
+        populate: ["image"],
+        fields: [ "createdAt", "headline", "title", "slug", "id" ]
+      });
+      this.homePageArticles = res.data;
+    },
     async fetchHomePage() {
       const { find } = useStrapi();
-      const res = await find("homepage", { populate: ["intro", "news"] });
+      const res = await find("homepage", { populate: [ "intro", "news", "projects", "photos" ] });
+      console.log(res.data);
       this.homePage = res.data;
     },
     async fetchResumePage() {
@@ -93,11 +104,14 @@ export const useAppStore = defineStore("AppStore", {
         return data.data.value;
       });
       this.aboutThisPage = about;
-    }
+    },
   },
   getters: {
     getAboutThisPage() {
       return this.aboutThisPage;
+    },
+    getHomePageArticles() {
+      return this.homePageArticles;
     },
     getGitHubProfile() {
       return this.gitHubProfile;
@@ -108,6 +122,7 @@ export const useAppStore = defineStore("AppStore", {
     getResumePage() {
       return this.resumePage;
     },
+
     getResumePage_Experiences() {
       let exps = this.resumePage.attributes.experiences.experiences.data.sort(
         function (a, b) {

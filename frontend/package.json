@@ -8,6 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-27954023.4cee565",
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/strapi": "^1.8.1",
     "@tailwindcss/typography": "^0.5.9",

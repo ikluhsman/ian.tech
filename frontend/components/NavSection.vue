@@ -6,7 +6,7 @@
         <li><span id="linkto-news" class="cursor-pointer underline" @click="idLinkClick">news</span></li>
         <li><span id="linkto-projects" class="cursor-pointer underline" @click="idLinkClick">projects</span></li>
         <li><span id="linkto-photos" class="cursor-pointer underline" @click="idLinkClick">photos</span></li>
-        <li><span id="linkto-footer" class="cursor-pointer underline" @click="idLinkClick">contact</span></li>
+        <li><span id="linkto-footer" class="cursor-pointer underline" @click="idLinkClick"><nuxt-link to="/contact">contact</nuxt-link></span></li>
       </ul>
     </nav>
   </section>

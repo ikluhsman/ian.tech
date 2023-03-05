@@ -11,6 +11,9 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "headline": {
+      "type": "string"
     }
   }
 }

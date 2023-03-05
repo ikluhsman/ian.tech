@@ -1,9 +1,8 @@
 <template>
   <section id="projects">
     <h2>projects</h2>
-    <p>In recent past I started sharing projects I make on
-      <a href="https://github.com/ikluhsman" target="_blank">GitHub</a>.
-    </p>
+    <p>Aside from my job, I write and maintain code for my own enjoyment. Here are some of my projects
+      from <a href="https://github.com/ikluhsman" target="_blank">GitHub</a>.</p>
     <div>
       <ul class="p-0 list-none">
         <li v-for="(r, k) in repos" :key="k" class="pb-1 flex gap-2">

@@ -15,8 +15,11 @@
         <div>
           <site-logo />
           <div>
-            <div class="mt-8 w-11/12 md:w-140">
-              <nuxt-link href="/" v-if="route.path !== '/'">{{ '\<\=' }} index</nuxt-link>
+            <div class="mt-8 w-11/12 sm:w-140 md:w-160">
+              <nuxt-link href="/" class="no-underline" v-if="route.path !== '/'">
+                {{ '\< ' }}
+                    <span class="underline">{{ ' index' }}</span>
+              </nuxt-link>
               <slot />
             </div>
           </div>
@@ -52,7 +55,6 @@ onMounted(() => {
   }
   let root = document.querySelector(":root");
   root.style.setProperty("--accent-color", appStore.randomColor);
-  console.log(router);
 });
 
 onUnmounted(() => {

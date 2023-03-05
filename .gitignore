@@ -81,6 +81,19 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 dist
+node_modules
+*.log*
+.nitro
+.output
+
+frontend/.nuxt
+frontend/dist
+frontend/node_modules
+frontend/*.log*
+frontend/.nitro
+frontend/.output
+
+
 
 # Gatsby files
 .cache/
