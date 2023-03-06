@@ -21,11 +21,6 @@
       "type": "component",
       "repeatable": false,
       "component": "sections.sections-education"
-    },
-    "skills": {
-      "type": "component",
-      "repeatable": false,
-      "component": "sections.sections-resume-skills"
     }
   }
 }

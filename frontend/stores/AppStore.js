@@ -11,15 +11,21 @@ export const useAppStore = defineStore("AppStore", {
       resumePage: {},
       gitHubProfile: "",
       aboutThisPage: "",
+      article: {},
+      imageOverlayIsOpen: false,
+      imageOverlayUrl: "",
     };
   },
   actions: {
+    async setImageOverlayUrl(url) {
+      this.imageOverlayUrl = await url;
+    },
     async fetchArticle() {
       const { find } = useStrapi();
       const route = useRoute();
       const res = await find("articles", {
         populate: ["image"],
-        "filters[slug][$containsi]": route.params.title,
+        "filters[slug][$containsi]": route.params.slug,
       });
       this.article = res.data[0];
     },
@@ -44,10 +50,13 @@ export const useAppStore = defineStore("AppStore", {
           "experiences.experiences",
           "experiences.experiences.achievements",
           "experiences.experiences.skills",
+          "experiences.experiences.references",
+          "experiences.experiences.references.image",
           "education.experiences",
           "education.experiences.achievements",
           "education.experiences.skills",
           "skills.skills",
+          ""
         ],
       });
       this.resumePage = res.data;
@@ -110,6 +119,12 @@ export const useAppStore = defineStore("AppStore", {
     },
   },
   getters: {
+    getImageOverlayUrl() {
+      return this.imageOverlayUrl;
+    },
+    getImageOverlayStatus() {
+      return this.imageOverlayIsOpen;
+    },
     getArticle() {
       return this.article;
     },
@@ -164,7 +179,7 @@ export const useAppStore = defineStore("AppStore", {
       );
       return exps;
     },
-    getResumePage_Experiences() {
+    getResumePage_References() {
       let exps = this.resumePage.attributes.experiences.experiences.data.sort(
         function (a, b) {
           return (

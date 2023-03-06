@@ -47,6 +47,12 @@
       "relation": "oneToMany",
       "target": "api::achievement.achievement",
       "mappedBy": "experience"
+    },
+    "references": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reference.reference",
+      "mappedBy": "experience"
     }
   }
 }

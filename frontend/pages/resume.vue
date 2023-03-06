@@ -54,6 +54,10 @@ function toggleMenu(event, e) {
   });
 }
 
+async function clickImageOverlay(r) {
+  await appStore.setImageOverlayUrl(r.attributes.image.data.attributes.formats.medium.url);
+  appStore.imageOverlayIsOpen = !appStore.imageOverlayIsOpen;
+}
 </script>
 <template>
   <div class="mx-auto">
@@ -63,8 +67,7 @@ function toggleMenu(event, e) {
         <li v-for="(e, k) in appStore.getResumePage_Experiences" :key="k" :id="'accordion-li-' + e.id"
           class="accordion-group mb-4">
           <div class="flex group cursor-pointer" @click="toggleMenu($event, e)">
-            
-            <div class="z-10 w-full">
+            <div class="w-full">
               <div class="order-1 shadow-only transition-ease ">
                 <div class="flex justify-between text-base">
                   <h6 class="font-semibold text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight m-0">
@@ -95,18 +98,27 @@ function toggleMenu(event, e) {
           </div>
 
           <div :id="'accordion-content-' + e.id" class="h-0 overflow-hidden accordion-content">
-            <!-- <p class="text-gray-900 font-semibold ml-4 dark:text-gray-50">
-              {{ e.attributes.summary }}
-            </p> -->
             <div class="highlight-content pt-4" v-html="formatContent(e.attributes.highlights)" />
-            <div class="mt-8 text-sm flex items-center" v-for="(s, k) in e.attributes.skills.data" :key="k">
+            <div class="my-8 text-sm flex items-center" v-for="(s, k) in e.attributes.skills.data" :key="k">
               <icon :name="s.attributes.iconesName" class="text-xl w-20" />
               <div :id="'skill-description-' + e.id" class="skill-description ml-2 w-10/12">
                 <span>{{ s.attributes.description }}</span>
               </div>
             </div>
+            <!-- <h6 v-if="e.attributes.references.data.length > 0">supporting references</h6> -->
+            <div class="ml-4">
+              <h6 v-if="e.attributes.references.data.length > 0 " class="ml-0 sm:ml-4 m-4">reference letters</h6>
+              <div class="text-sm flex items-center sm:m-4 sm:ml-12" v-for="(r, k) in e.attributes.references.data" :key="k">
+                <a href="javascript:void(0)" @click="clickImageOverlay(r)">
+                  <nuxt-img :src="r.attributes.image.data.attributes.formats.thumbnail.url" class="h-16 cursor-pointer"/>
+                </a>
+                <div :id="'reference-description-' + r.id" class="reference-description ml-4 w-10/12">
+                  <span>{{ r.attributes.title }}, {{ r.attributes.company }}</span>
+                </div>
+              </div>
+            </div>
+            
           </div>
-          
         </li>
       </ul>
     </section>
@@ -123,7 +135,7 @@ function toggleMenu(event, e) {
               <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
             </div>
 
-            <div class="z-10 w-full">
+            <div class="w-full">
               <div class="order-1 shadow-only transition-ease ">
                 <div class="flex justify-between text-base">
                   <h6 class="font-semibold text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight m-0">
