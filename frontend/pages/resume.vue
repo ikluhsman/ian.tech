@@ -5,7 +5,15 @@ import Flip from "gsap/Flip";
 import gsap from "gsap";
 definePageMeta({
   layout: "resume",
+  pageTransition: {
+    name: 'slide-in',
+    mode: 'out-in',
+    onBeforeEnter: (el) => {
+      gsap.from(el, { duration: 0.1, x: innerWidth });
+    }
+  }
 });
+
 const appStore = useAppStore();
 await appStore.fetchResumePage();
 const resumePage = computed(() => {

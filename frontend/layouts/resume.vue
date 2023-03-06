@@ -1,5 +1,6 @@
 <script setup>
 import { useAppStore } from "../stores/AppStore.js";
+import { storeToRefs } from 'pinia';
 import _ from "lodash";
 import gsap from 'gsap';
 const appStore = useAppStore();
@@ -39,20 +40,23 @@ function scrollToTop() {
   });
 }
 function clickImageOverlay() {
-  const imageOverlay = document.getElementById("image-overlay");
-  const closeButton = document.getElementById("close-button");
-  if (appStore.imageOverlayIsOpen) {
-    gsap.set("#" + imageOverlay?.id, { height: innerHeight, width: innerWidth });
-    gsap.to("#" + imageOverlay?.id, { duration: 0.7, opacity: 1, ease: "power4.in" });
-    gsap.to("#" + closeButton?.id, { duration: 0.5, opacity: 1, delay: 0.3, ease: "power4.in" });
-  }
-  if (!appStore.imageOverlayIsOpen) {
-    gsap.to("#" + imageOverlay?.id, { duration: 1, x: 0, opacity: 0, ease: "power4.out" });
-    gsap.set("#" + imageOverlay?.id, { height: 0, width: 0, delay: 1 });
-    gsap.to("#" + closeButton?.id, { duration: 0.5, opacity: 0, delay: 0.3, ease: "power4.out" });
-  }
+  console.log("worked");
+    const imageOverlay = document.getElementById("image-overlay");
+    const closeButton = document.getElementById("close-button");
+    if (appStore.imageOverlayIsOpen) {
+      gsap.set("#" + imageOverlay?.id, { height: innerHeight, width: innerWidth });
+      gsap.to("#" + imageOverlay?.id, { duration: 0.7, opacity: 1, ease: "power4.in" });
+      gsap.to("#" + closeButton?.id, { duration: 0.5, opacity: 1, delay: 0.3, ease: "power4.in" });
+    }
+    if (!appStore.imageOverlayIsOpen) {
+      gsap.to("#" + imageOverlay?.id, { duration: 1, x: 0, opacity: 0, ease: "power4.out" });
+      gsap.set("#" + imageOverlay?.id, { height: 0, width: 0, delay: 1 });
+      gsap.to("#" + closeButton?.id, { duration: 0.5, opacity: 0, delay: 0.3, ease: "power4.out" });
+    }
 };
-watchEffect(clickImageOverlay);
+var isOpen = ref(appStore.imageOverlayIsOpen);
+const { getImageOverlayStatus } = storeToRefs(appStore);
+watch(getImageOverlayStatus, clickImageOverlay);
 const imageUrl = computed(() => {
   if (appStore.getImageOverlayUrl === "") {
     return "https://placekitten.com/1024/768" // nuxt-img needs a placeholder to load the first time

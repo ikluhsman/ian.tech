@@ -1,5 +1,15 @@
 <script setup>
 import { useAppStore } from "~~/stores/AppStore";
+import gsap from 'gsap';
+definePageMeta({
+  pageTransition: {
+    name: 'slide-in',
+    mode: 'out-in',
+    onBeforeEnter: (el) => {
+      gsap.from(el, { duration: 0.1, x: -innerWidth });
+    }
+  }
+})
 const appStore = useAppStore();
 await appStore.fetchHomePage();
 await appStore.fetchGitHubRepos();
