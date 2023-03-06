@@ -55,7 +55,7 @@ function toggleMenu(event, e) {
 }
 
 async function clickImageOverlay(r) {
-  await appStore.setImageOverlayUrl(r.attributes.image.data.attributes.formats.medium.url);
+  await appStore.setImageOverlayUrl(r.attributes.image.data.attributes.formats.large.url);
   appStore.imageOverlayIsOpen = !appStore.imageOverlayIsOpen;
 }
 </script>
