@@ -8,6 +8,16 @@
 </template>
 <script setup>
 import { useAppStore } from '../stores/AppStore.js';
+import gsap from 'gsap';
+definePageMeta({
+  pageTransition: {
+    name: 'slide-in',
+    mode: 'out-in',
+    onBeforeEnter: (el) => {
+      gsap.from(el, { duration: 0.25, x: innerWidth });
+    }
+  }
+});
 const { $mdRenderer } = useNuxtApp();
 function formatContent(contentAttribute) {
   return $mdRenderer.render(contentAttribute);

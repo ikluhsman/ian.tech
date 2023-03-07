@@ -3,7 +3,7 @@
     <h2>{{ thisSection.headline }}</h2>
     <div v-html="htmlContent" />
     <div>
-      <ul class="p-0 list-none md:leading-6">
+      <ul class="p-0 list-none">
         <li v-for="(r, k) in repos" :key="k" class="pb-1 flex gap-2">
           <span>{{ formatDate(r.created) }}</span>
           <a :href="r.html_url" target="_blank">{{ r.name }}</a>

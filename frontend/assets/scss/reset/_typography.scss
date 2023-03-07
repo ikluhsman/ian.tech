@@ -68,12 +68,3 @@ h6 {
   @apply text-base;
 }
 
-a {
-  @apply text-gray-900 dark:text-gray-50 underline;
-  text-decoration-line: underline;
-}
-
-a:hover {
-  @apply no-underline;
-  color: $accent-color;
-}

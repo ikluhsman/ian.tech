@@ -21,6 +21,20 @@
     border-color: var(--accent-color);
 }
 
+section > h2:hover::before {
+  content: '#'
+}
+
+a {
+  @apply text-gray-900 dark:text-gray-50 underline;
+  text-decoration-line: underline;
+}
+
+a:hover {
+  @apply no-underline;
+  color: $accent-color;
+}
+
 /* global browser scrollbar styling */
 body {
   @apply bg-gray-100 dark:bg-gray-1000;

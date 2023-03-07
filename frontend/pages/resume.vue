@@ -75,7 +75,8 @@ async function clickImageOverlay(r) {
       <ul class="list-none p-0">
         <li v-for="(e, k) in appStore.getResumePage_Experiences" :key="k" :id="'accordion-li-' + e.id"
           class="accordion-group mb-4">
-          <div class="flex group cursor-pointer" @click="toggleMenu($event, e)">
+          
+          <div id="experience-header" class="flex group cursor-pointer" @click="toggleMenu($event, e)">
             <div class="w-full">
               <div class="order-1 shadow-only transition-ease ">
                 <div class="flex justify-between text-base">
@@ -91,25 +92,32 @@ async function clickImageOverlay(r) {
                 </span>
               </div>
             </div>
-            <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:ml-4">
-              <div
-                class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
-              <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
-            </div>
+            <!-- <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:ml-4">
+                  <div
+                    class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
+                  <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
+                </div> -->
           </div>
 
           <div :id="'accordion-content-' + e.id" class="h-0 overflow-hidden accordion-content">
-            <h6 class="my-4 ml-2">highlights</h6>
-            <div class="highlight-content text-sm" v-html="formatContent(e.attributes.highlights)" />
-            <h6 v-if="e.attributes.skills.data.length > 0" class="my-4 ml-2">skills</h6>
-            <div class="text-sm flex items-center mb-2" v-for="(s, k) in e.attributes.skills.data" :key="k">
-              <icon :name="s.attributes.iconesName" class="text-xl w-12" />
-              <div :id="'skill-description-' + e.id" class="skill-description ml-4 w-10/12">
-                <span>{{ s.attributes.description }}</span>
+
+            <div>
+              <!-- <h6 class="my-4 ml-2">highlights</h6> -->
+              <div class="highlight-content text-sm" v-html="formatContent(e.attributes.highlights)" />
+            </div>
+
+            <div>
+              <!-- <h6 v-if="e.attributes.skills.data.length > 0" class="my-4 ml-2">skills</h6> -->
+              <div class="text-sm flex items-center mb-2" v-for="(s, k) in e.attributes.skills.data" :key="k">
+                <icon :name="s.attributes.iconesName" class="text-xl w-12" />
+                <div :id="'skill-description-' + e.id" class="skill-description ml-4 w-10/12">
+                  <span>{{ s.attributes.description }}</span>
+                </div>
               </div>
             </div>
+
             <div>
-              <h6 v-if="e.attributes.references.data.length > 0" class="my-4 ml-2">reference letters</h6>
+              <!-- <h6 v-if="e.attributes.references.data.length > 0" class="my-4 ml-2">reference letters</h6> -->
               <div class="text-sm flex items-center sm:m-4 sm:ml-12" v-for="(r, k) in e.attributes.references.data"
                 :key="k">
                 <a href="javascript:void(0)" @click="clickImageOverlay(r)">
@@ -120,8 +128,9 @@ async function clickImageOverlay(r) {
                 </div>
               </div>
             </div>
+
             <div>
-              <h6 v-if="e.attributes.achievements.data.length > 0" class="ml-0 sm:ml-4 m-4">notable achievements</h6>
+              <!-- <h6 v-if="e.attributes.achievements.data.length > 0" class="ml-0 sm:ml-4 m-4">notable achievements</h6> -->
               <div class="text-sm flex items-center sm:m-4 sm:ml-12" v-for="(a, k) in e.attributes.achievements.data"
                 :key="k">
                 <a href="javascript:void(0)" @click="clickImageOverlay(a)">
@@ -133,6 +142,7 @@ async function clickImageOverlay(r) {
                 </div>
               </div>
             </div>
+
           </div>
         </li>
       </ul>
@@ -144,11 +154,6 @@ async function clickImageOverlay(r) {
           class="accordion-group mb-4">
           <div class="flex group cursor-pointer" @click="toggleMenu($event, e)">
 
-            <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:mr-4">
-              <div
-                class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
-              <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
-            </div>
             <div class="w-full">
               <div class="order-1 shadow-only transition-ease ">
                 <div class="flex justify-between text-base">
@@ -170,10 +175,17 @@ async function clickImageOverlay(r) {
               {{ e.attributes.summary }}
             </p>
             <div class="highlight-content" v-html="formatContent(e.attributes.highlights)" />
-            <div class="mt-8 text-sm flex items-center" v-for="(s, k) in e.attributes.skills.data" :key="k">
-              <icon :name="s.attributes.iconesName" class="text-xl w-20" />
-              <div :id="'skill-description-' + e.id" class="skill-description ml-2 w-10/12">
-                <span>{{ s.attributes.description }}</span>
+            <div>
+              <h6 v-if="e.attributes.achievements.data.length > 0" class="ml-0 sm:ml-4 m-4">notable achievements</h6>
+              <div class="text-sm flex items-center sm:m-4 sm:ml-12" v-for="(a, k) in e.attributes.achievements.data"
+                :key="k">
+                <a href="javascript:void(0)" @click="clickImageOverlay(a)">
+                  <nuxt-img v-if="a.attributes.image.data"
+                    :src="a.attributes.image.data?.attributes.formats.thumbnail.url" class="h-16 cursor-pointer" />
+                </a>
+                <div :id="'achievement-description-' + a.id" class="achievement-description ml-4 w-10/12">
+                  <span>{{ a.attributes.title }}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -203,4 +215,5 @@ async function clickImageOverlay(r) {
 
 .active-icon {
   height: auto;
-}</style>
+}
+</style>
