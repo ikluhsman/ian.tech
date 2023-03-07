@@ -3,6 +3,7 @@ import { useAppStore } from "../stores/AppStore.js";
 import { storeToRefs } from 'pinia';
 import _ from "lodash";
 import gsap from 'gsap';
+
 const appStore = useAppStore();
 appStore.fetchRandomColor();
 const justification = computed(() => {

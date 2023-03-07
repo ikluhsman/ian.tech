@@ -13,21 +13,12 @@ definePageMeta({
     }
   }
 });
-
 const appStore = useAppStore();
 await appStore.fetchResumePage();
 const resumePage = computed(() => {
   return appStore.getResumePage;
 })
-const experienceSection = computed(() => {
-  return appStore.getResumePage_Experiences;
-});
-const educationSection = computed(() => {
-  return appStore.getResumePage_Education;
-});
-const skillsSection = computed(() => {
-  return appStore.getResumePage_Skills;
-})
+
 function formatDate(dateString, format) {
   const date = dayjs(dateString);
   return date.format(format);
@@ -63,131 +54,98 @@ function toggleMenu(event, e) {
 }
 
 async function clickImageOverlay(r) {
-
   await appStore.setImageOverlayUrl(r.attributes.image.data.attributes.formats.large.url);
   appStore.imageOverlayIsOpen = !appStore.imageOverlayIsOpen;
 }
+
 </script>
 <template>
   <div class="mx-auto">
-    <section class="experience-section relative">
-      <h3>{{ resumePage.attributes.experiences.headline }}</h3>
-      <ul class="list-none p-0">
-        <li v-for="(e, k) in appStore.getResumePage_Experiences" :key="k" :id="'accordion-li-' + e.id"
-          class="accordion-group mb-4">
-          
+    <section v-for="(section, key) in resumePage.attributes.resumeSections" :key="key"
+      class="experience-section relative">
+      <h3>{{ section.headline }}</h3>
+      <ul v-if="section.experiences.data.length > 0" class="list-none p-0">
+        <li v-for="(e, k) in section.experiences.data" :key="k" :id="'accordion-li-' + e.id" class="accordion-group p-2">
           <div id="experience-header" class="flex group cursor-pointer" @click="toggleMenu($event, e)">
             <div class="w-full">
               <div class="order-1 shadow-only transition-ease ">
                 <div class="flex justify-between text-base">
-                  <h6 class="font-semibold text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight m-0">
+                  <span class="font-semibold sm:whitespace-nowrap highlight m-0">
                     {{ e.attributes.title }}
-                  </h6>
-                  <span class="font-bold highlight opacity-85 whitespace-nowrap">
+                  </span>
+                  <span class="font-bold highlight whitespace-nowrap">
                     {{ formatDate(e.attributes.startDate, "YYYY") }} - {{ formatDate(e.attributes.endDate, "YYYY") }}
                   </span>
                 </div>
-                <span class="highlight p-0 m-0 tracking-tight ml-2">
-                  @<span class="font-semibold">{{ e.attributes.company }}</span>
-                </span>
+                <h6 class="font-semibold m-0 ml-2 mt-1">@ {{ e.attributes.company }}</h6>
               </div>
             </div>
-            <!-- <div class="flex flex-col items-center justify-stretch invisible sm:visible sm:ml-4">
-                  <div
-                    class="bg-accent-color group-hover:bg-accent-color rounded-full h-0 w-0 sm:h-4 sm:w-4 shadow-lg shadow-current dark:opacity-80 opacity-50" />
-                  <div class="bg-accent-color h-0 sm:h-[90%] w-0 sm:w-1 opacity-50 dark:opacity-80" />
-                </div> -->
           </div>
 
+
           <div :id="'accordion-content-' + e.id" class="h-0 overflow-hidden accordion-content">
-
-            <div>
-              <!-- <h6 class="my-4 ml-2">highlights</h6> -->
-              <div class="highlight-content text-sm" v-html="formatContent(e.attributes.highlights)" />
+            
+            <!-- highlights -->
+            <div class="py-4">
+              <hr class="border-gray-500" />
+              <h6 class="m-0 p-0 mb-1">highlights</h6>
+              <div class="highlight-content text-sm mt-4 m-0" v-html="formatContent(e.attributes.highlights)" />
+            </div>
+            
+            <!-- skills -->
+            <div v-if="e.attributes.skills.data.length > 0" class="pb-4">
+              <hr class="border-gray-500" />
+              <h6 class="m-0 p-0 mb-2">skills</h6>
+              <ul class="list-none pl-2">
+                <li class="text-sm flex items-center gap-4 my-3" v-for="(s, k) in e.attributes.skills.data" :key="k">
+                  <icon :name="s.attributes.iconesName" class="text-xl w-12" />
+                  <div :id="'skill-description-' + e.id" class="skill-description w-full">
+                    <span>{{ s.attributes.description }}</span>
+                  </div>
+                </li>
+              </ul>
             </div>
 
-            <div>
-              <!-- <h6 v-if="e.attributes.skills.data.length > 0" class="my-4 ml-2">skills</h6> -->
-              <div class="text-sm flex items-center mb-2" v-for="(s, k) in e.attributes.skills.data" :key="k">
-                <icon :name="s.attributes.iconesName" class="text-xl w-12" />
-                <div :id="'skill-description-' + e.id" class="skill-description ml-4 w-10/12">
-                  <span>{{ s.attributes.description }}</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <!-- <h6 v-if="e.attributes.references.data.length > 0" class="my-4 ml-2">reference letters</h6> -->
-              <div class="text-sm flex items-center sm:m-4 sm:ml-12" v-for="(r, k) in e.attributes.references.data"
+            <!-- references -->
+            <div v-if="e.attributes.references.data.length > 0">
+              <hr class="border-gray-500" />
+              <h6 class="m-0 p-0 mb-4">references</h6>
+              <div class="text-sm flex items-center ml-4" v-for="(r, k) in e.attributes.references.data"
                 :key="k">
-                <a href="javascript:void(0)" @click="clickImageOverlay(r)">
+                <a href="javascript:void(0)" class="flex" @click="clickImageOverlay(r)">
                   <nuxt-img :src="r.attributes.image.data.attributes.formats.thumbnail.url" class="h-16 cursor-pointer" />
                 </a>
-                <div :id="'reference-description-' + r.id" class="reference-description ml-4 w-10/12">
+                <div :id="'reference-description-' + r.id" class="reference-description ml-4">
                   <span>{{ r.attributes.title }}, {{ r.attributes.company }}</span>
                 </div>
               </div>
             </div>
 
-            <div>
-              <!-- <h6 v-if="e.attributes.achievements.data.length > 0" class="ml-0 sm:ml-4 m-4">notable achievements</h6> -->
-              <div class="text-sm flex items-center sm:m-4 sm:ml-12" v-for="(a, k) in e.attributes.achievements.data"
-                :key="k">
-                <a href="javascript:void(0)" @click="clickImageOverlay(a)">
-                  <nuxt-img v-if="a.attributes.image.data"
-                    :src="a.attributes.image.data?.attributes.formats.thumbnail.url" class="h-16 cursor-pointer" />
-                </a>
-                <div :id="'achievement-description-' + a.id" class="achievement-description ml-4 w-10/12">
-                  <span>{{ a.attributes.title }}</span>
-                </div>
-              </div>
+            <!-- achievements -->
+            <div v-if="e.attributes.achievements.data.length > 0">
+              <hr class="border-gray-500" />
+              <h6 class="m-0 p-0">achievements</h6>
+              <ul class="list-none p-0">
+                <li class="text-sm flex my-4" v-for="(a, k) in e.attributes.achievements.data"
+                  :key="k">
+
+                  <a href="javascript:void(0)" @click="clickImageOverlay(a)" class="flex items-center">
+                    <div class="flex items-center justify-center w-16" v-if="!a.attributes.image.data">
+                      <icon name="game-icons:laurels-trophy" class="cursor-pointer h-12 w-16" v-if="!a.attributes.image.data"/>
+                    
+                    </div>
+                    <nuxt-img v-if="a.attributes.image.data"
+                      :src="a.attributes.image.data?.attributes.formats.thumbnail.url" class="cursor-pointer w-16" />
+                  </a>
+
+                  <div :id="'achievement-description-' + a.id" class="achievement-description flex flex-1 items-center px-4">
+                    <span>{{ a.attributes.title }}</span>
+                  </div>
+
+                </li>
+              </ul>
             </div>
 
-          </div>
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h3>{{ resumePage.attributes.education.headline }}</h3>
-      <ul class="list-none p-0">
-        <li v-for="(e, k) in appStore.getResumePage_Education" :key="k" :id="'accordion-li-' + e.id"
-          class="accordion-group mb-4">
-          <div class="flex group cursor-pointer" @click="toggleMenu($event, e)">
-
-            <div class="w-full">
-              <div class="order-1 shadow-only transition-ease ">
-                <div class="flex justify-between text-base">
-                  <h6 class="font-semibold text-gray-900 dark:text-gray-50 sm:whitespace-nowrap highlight m-0">
-                    {{ e.attributes.title }}
-                  </h6>
-                  <span class="font-bold highlight opacity-85 whitespace-nowrap">
-                    {{ formatDate(e.attributes.startDate, "YYYY") }} - {{ formatDate(e.attributes.endDate, "YYYY") }}
-                  </span>
-                </div>
-                <span class="highlight p-0 m-0 tracking-tight ml-2">
-                  @<span class="font-semibold">{{ e.attributes.company }}</span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div :id="'accordion-content-' + e.id" class="h-0 overflow-hidden accordion-content">
-            <p class="text-gray-900 font-semibold ml-4 dark:text-gray-50">
-              {{ e.attributes.summary }}
-            </p>
-            <div class="highlight-content" v-html="formatContent(e.attributes.highlights)" />
-            <div>
-              <h6 v-if="e.attributes.achievements.data.length > 0" class="ml-0 sm:ml-4 m-4">notable achievements</h6>
-              <div class="text-sm flex items-center sm:m-4 sm:ml-12" v-for="(a, k) in e.attributes.achievements.data"
-                :key="k">
-                <a href="javascript:void(0)" @click="clickImageOverlay(a)">
-                  <nuxt-img v-if="a.attributes.image.data"
-                    :src="a.attributes.image.data?.attributes.formats.thumbnail.url" class="h-16 cursor-pointer" />
-                </a>
-                <div :id="'achievement-description-' + a.id" class="achievement-description ml-4 w-10/12">
-                  <span>{{ a.attributes.title }}</span>
-                </div>
-              </div>
-            </div>
           </div>
         </li>
       </ul>
@@ -195,6 +153,10 @@ async function clickImageOverlay(r) {
   </div>
 </template>
 <style scoped>
+span {
+  @apply tracking-wide;
+}
+
 .group:hover .group-hover\:bg-accent-color {
   @apply bg-[var(--accent-color)] shadow-lg shadow-current text-[var(--accent-color)];
 }
@@ -215,5 +177,4 @@ async function clickImageOverlay(r) {
 
 .active-icon {
   height: auto;
-}
-</style>
+}</style>

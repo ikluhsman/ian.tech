@@ -16,7 +16,7 @@ import { gsap } from 'gsap';
 function idLinkClick(e) {
   const headingId = '#' + e.target.id.split('-')[1];
   gsap.to(window, {
-    duration: 0.75,
+    duration: 0.35,
     scrollTo: { y: headingId, offsetY: 200 },
   });
 }

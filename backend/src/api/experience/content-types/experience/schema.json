@@ -51,8 +51,7 @@
     "references": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::reference.reference",
-      "mappedBy": "experience"
+      "target": "api::reference.reference"
     }
   }
 }

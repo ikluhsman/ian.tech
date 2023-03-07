@@ -21,3 +21,19 @@
   font-family: "Fira Code iScript Italic";
   font-style: italic;
 }
+
+.font-default {
+  @include default-font;
+}
+.font-display {
+  @include display-font;
+}
+.font-cursive {
+  @include cursive-font;
+}
+.font-monospace {
+  @include monospace-font;
+}
+.font-monospace-bold {
+  @include monospace-bold-font;
+}

@@ -1,18 +1,21 @@
 {
-  "collectionName": "components_sections_sections_experiences",
+  "collectionName": "components_sections_sections_resume_sections",
   "info": {
-    "displayName": "Sections.resumeExperiences",
+    "displayName": "Sections.resumeSection",
     "description": ""
   },
   "options": {},
   "attributes": {
+    "headline": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
     "experiences": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::experience.experience"
-    },
-    "headline": {
-      "type": "string"
     }
   }
 }

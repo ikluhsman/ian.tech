@@ -12,15 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "experiences": {
+    "resumeSections": {
       "type": "component",
-      "repeatable": false,
-      "component": "sections.sections-experiences"
+      "repeatable": true,
+      "component": "sections.sections-resume-section"
     },
-    "education": {
+    "meta": {
       "type": "component",
       "repeatable": false,
-      "component": "sections.sections-education"
+      "component": "shared.default-seo"
     }
   }
 }

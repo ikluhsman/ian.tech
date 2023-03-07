@@ -46,17 +46,38 @@ export const useAppStore = defineStore("AppStore", {
     async fetchResumePage() {
       const { find } = useStrapi();
       const res = await find("resume", {
-        populate: [
-          "experiences.experiences",
-          "experiences.experiences.achievements.image",
-          "experiences.experiences.skills",
-          "experiences.experiences.references",
-          "experiences.experiences.references.image",
-          "education.experiences",
-          "education.experiences.achievements.image",
-          "education.experiences.skills",
-          "skills.skills",
-        ],
+        populate: {
+          resumeSections: {
+            fields: ['*'],
+            populate: {
+              experiences: {
+                fields: ['*'],
+                sort: ['startDate:desc'],
+                populate: {
+                  achievements: {
+                    fields: ['*'],
+                    populate: {
+                      image: {
+                        fields: ['*'],
+                      }
+                    }
+                  },
+                  references: {
+                    fields: ['*'],
+                    populate: {
+                      image: {
+                        fields: ['*'],
+                      }
+                    }
+                  },
+                  skills: {
+                    fields: ['*'],
+                  },
+                },
+              }
+            }
+          }
+        }
       });
       this.resumePage = res.data;
     },
@@ -167,48 +188,6 @@ export const useAppStore = defineStore("AppStore", {
     },
     getHomePagePhotos() {
       return this.homePagePhotos;
-    },
-    getResumePage_Experiences() {
-      let exps = this.resumePage.attributes.experiences.experiences.data.sort(
-        function (a, b) {
-          return (
-            new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
-          );
-        }
-      );
-      return exps;
-    },
-    getResumePage_References() {
-      let exps = this.resumePage.attributes.experiences.experiences.data.sort(
-        function (a, b) {
-          return (
-            new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
-          );
-        }
-      );
-      return exps;
-    },
-    getResumePage_Education() {
-      let exps = this.resumePage.attributes.education.experiences.data.sort(
-        function (a, b) {
-          return (
-            new Date(b.attributes.startDate) - new Date(a.attributes.startDate)
-          );
-        }
-      );
-      return exps;
-    },
-    getResumePage_Skills() {
-      let exps = this.resumePage.attributes.skills.skills.data.sort(function (
-        a,
-        b
-      ) {
-        return (
-          new Date(b.attributes.dateAcquired) -
-          new Date(a.attributes.dateAcquired)
-        );
-      });
-      return exps;
     },
     getAccentColor() {
       return this.randomColor;

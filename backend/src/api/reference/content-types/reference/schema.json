@@ -45,12 +45,6 @@
       ],
       "type": "media",
       "multiple": false
-    },
-    "experience": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::experience.experience",
-      "inversedBy": "references"
     }
   }
 }
