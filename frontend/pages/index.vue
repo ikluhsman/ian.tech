@@ -6,7 +6,7 @@ definePageMeta({
     name: 'slide-in',
     mode: 'out-in',
     onBeforeEnter: (el) => {
-      gsap.from(el, { duration: 0.1, x: -innerWidth });
+      gsap.from(el, { duration: 0.5, x: -innerWidth });
     }
   }
 })

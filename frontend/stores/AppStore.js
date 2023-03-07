@@ -48,15 +48,14 @@ export const useAppStore = defineStore("AppStore", {
       const res = await find("resume", {
         populate: [
           "experiences.experiences",
-          "experiences.experiences.achievements",
+          "experiences.experiences.achievements.image",
           "experiences.experiences.skills",
           "experiences.experiences.references",
           "experiences.experiences.references.image",
           "education.experiences",
-          "education.experiences.achievements",
+          "education.experiences.achievements.image",
           "education.experiences.skills",
           "skills.skills",
-          ""
         ],
       });
       this.resumePage = res.data;

@@ -2,7 +2,7 @@
   <section id="nav">
     <nav>
       <h2>nav</h2>
-      <ul class="list-none p-0 leading-6">
+      <ul class="list-none p-0 md:leading-6">
         <li><span id="linkto-news" class="cursor-pointer underline" @click="idLinkClick">news</span></li>
         <li><span id="linkto-projects" class="cursor-pointer underline" @click="idLinkClick">projects</span></li>
         <li><span id="linkto-photos" class="cursor-pointer underline" @click="idLinkClick">photos</span></li>

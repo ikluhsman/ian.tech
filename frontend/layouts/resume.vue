@@ -40,7 +40,6 @@ function scrollToTop() {
   });
 }
 function clickImageOverlay() {
-  console.log("worked");
     const imageOverlay = document.getElementById("image-overlay");
     const closeButton = document.getElementById("close-button");
     if (appStore.imageOverlayIsOpen) {
