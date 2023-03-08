@@ -3,13 +3,14 @@
     <h2>{{ thisSection.headline }}</h2>
     <div v-html="htmlContent" />
     <div>
-      <ul class="list-none p-0 md:leading-6">
-        <li v-for="a in articles" :key="a.id">
-          {{ formatDate(a.attributes.createdAt, "MM-DD-YYYY") }}
+      <ul class="list-none p-0 leading-7">
+        <li v-for="a in articles" :key="a.id" class="flex gap-4">
+          <span class="w-24">{{ formatDate(a.attributes.createdAt, "MM/DD/YYYY") }}</span>
           <nuxt-link class="cursor-pointer" :to="'/articles/' + a.attributes.slug">{{ a.attributes.headline }}</nuxt-link>
         </li>
       </ul>
     </div>
+    <p>..or see <nuxt-link to="/articles">my news archives..</nuxt-link></p>
   </section>
 </template>
 <script setup>

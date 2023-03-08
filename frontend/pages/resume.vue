@@ -69,7 +69,7 @@ async function clickImageOverlay(r) {
           <div id="experience-header" class="flex group cursor-pointer" @click="toggleMenu($event, e)">
             <div class="w-full">
               <div class="order-1 shadow-only transition-ease ">
-                <div class="flex justify-between text-base">
+                <div class="flex justify-between text-xl">
                   <span class="font-semibold sm:whitespace-nowrap highlight m-0">
                     {{ e.attributes.title }}
                   </span>
@@ -77,26 +77,25 @@ async function clickImageOverlay(r) {
                     {{ formatDate(e.attributes.startDate, "YYYY") }} - {{ formatDate(e.attributes.endDate, "YYYY") }}
                   </span>
                 </div>
-                <h6 class="font-semibold m-0 ml-2 mt-1">@ {{ e.attributes.company }}</h6>
+                <h5 class="font-semibold m-0 ml-2 mt-1">@ {{ e.attributes.company }}</h5>
               </div>
             </div>
           </div>
-
 
           <div :id="'accordion-content-' + e.id" class="h-0 overflow-hidden accordion-content">
             
             <!-- highlights -->
             <div class="py-4">
-              <hr class="border-gray-500" />
+              <hr class="experience-separator" />
               <h6 class="m-0 p-0 mb-1">highlights</h6>
-              <div class="highlight-content text-sm mt-4 m-0" v-html="formatContent(e.attributes.highlights)" />
+              <div class="highlight-content text-base mt-4 m-0" v-html="formatContent(e.attributes.highlights)" />
             </div>
             
             <!-- skills -->
             <div v-if="e.attributes.skills.data.length > 0" class="pb-4">
-              <hr class="border-gray-500" />
+              <hr class="experience-separator" />
               <h6 class="m-0 p-0 mb-2">skills</h6>
-              <ul class="list-none pl-2">
+              <ul class="list-none pl-4">
                 <li class="text-sm flex items-center gap-4 my-3" v-for="(s, k) in e.attributes.skills.data" :key="k">
                   <icon :name="s.attributes.iconesName" class="text-xl w-12" />
                   <div :id="'skill-description-' + e.id" class="skill-description w-full">
@@ -108,7 +107,7 @@ async function clickImageOverlay(r) {
 
             <!-- references -->
             <div v-if="e.attributes.references.data.length > 0">
-              <hr class="border-gray-500" />
+              <hr class="experience-separator" />
               <h6 class="m-0 p-0 mb-4">references</h6>
               <div class="text-sm flex items-center ml-4" v-for="(r, k) in e.attributes.references.data"
                 :key="k">
@@ -123,24 +122,28 @@ async function clickImageOverlay(r) {
 
             <!-- achievements -->
             <div v-if="e.attributes.achievements.data.length > 0">
-              <hr class="border-gray-500" />
+              <hr class="experience-separator" />
               <h6 class="m-0 p-0">achievements</h6>
               <ul class="list-none p-0">
-                <li class="text-sm flex my-4" v-for="(a, k) in e.attributes.achievements.data"
+                <li class="text-sm flex my-4 items-center" v-for="(a, k) in e.attributes.achievements.data"
                   :key="k">
 
                   <a href="javascript:void(0)" @click="clickImageOverlay(a)" class="flex items-center">
                     <div class="flex items-center justify-center w-16" v-if="!a.attributes.image.data">
-                      <icon name="game-icons:laurels-trophy" class="cursor-pointer h-12 w-16" v-if="!a.attributes.image.data"/>
+                      <icon name="game-icons:achievement" class="cursor-pointer h-12 w-16 dark:text-gray-400" v-if="!a.attributes.image.data"/>
                     
                     </div>
                     <nuxt-img v-if="a.attributes.image.data"
                       :src="a.attributes.image.data?.attributes.formats.thumbnail.url" class="cursor-pointer w-16" />
                   </a>
-
-                  <div :id="'achievement-description-' + a.id" class="achievement-description flex flex-1 items-center px-4">
-                    <span>{{ a.attributes.title }}</span>
+                  <div class="pl-4">
+                    <p class="m-0">{{ a.attributes.dateCompleted }}</p>
+                    <div :id="'achievement-description-' + a.id" class="achievement-description flex flex-1 items-center">
+                      <a v-if="a.attributes.linkUrl" :href="a.attributes.linkUrl" target="_blank" rel="noopener noreferrer">{{ a.attributes.title }}</a>
+                      <span v-if="!a.attributes.linkUrl">{{ a.attributes.title }}</span>
+                    </div>
                   </div>
+                  
 
                 </li>
               </ul>
@@ -153,6 +156,10 @@ async function clickImageOverlay(r) {
   </div>
 </template>
 <style scoped>
+.experience-separator {
+  @apply border-gray-400 dark:border-gray-600 border border-solid;
+}
+
 span {
   @apply tracking-wide;
 }

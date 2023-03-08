@@ -3,11 +3,11 @@
     <h2>{{ thisSection.headline }}</h2>
     <div v-html="htmlContent" />
     <div>
-      <ul class="p-0 list-none">
-        <li v-for="(r, k) in repos" :key="k" class="pb-1 flex gap-2">
-          <span>{{ formatDate(r.created) }}</span>
+      <ul class="p-0 list-none leading-7">
+        <li v-for="(r, k) in repos" :key="k" class="flex gap-4">
+          <span class="w-24">{{ formatDate(r.created) }}</span>
           <a :href="r.html_url" target="_blank">{{ r.name }}</a>
-          <span v-if="r.language" class="rounded-xl px-2 dark:text-gray-300 text-gray-500 text-shadow-accent-color">{{
+          <span v-if="r.language" class="accent-color text-shadow-accent-color">{{
             r.language }}</span>
         </li>
       </ul>

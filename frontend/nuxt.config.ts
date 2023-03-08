@@ -21,15 +21,7 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Noto%20Sans",
-        },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Noto%20Sans",
-        },
-        {
-          rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Prompt",
+          href: "https://fonts.googleapis.com/css?family=Outfit",
         },
       ],
     },

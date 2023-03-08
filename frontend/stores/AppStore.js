@@ -56,6 +56,7 @@ export const useAppStore = defineStore("AppStore", {
                 populate: {
                   achievements: {
                     fields: ['*'],
+                    sort: ['dateCompleted:desc'],
                     populate: {
                       image: {
                         fields: ['*'],
