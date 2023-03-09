@@ -1,9 +1,13 @@
 <template>
   <div>
-    <h1 id="about-me">about me</h1>
-    <div class="githubprofile-content" v-html="formatContent(gitHubProfile)" />
-    <h1 id="about-this-page">about this page</h1>
-    <div class="aboutthispage-content" v-html="formatContent(aboutThisPage)" />
+    <h1>{{ aboutPage.attributes.headline }}</h1>
+    <div class="about-page-content" v-html="formatContent(aboutPage.attributes.content)"/>
+
+    <!-- <div class="aboutthispage-content" v-html="formatContent(aboutThisPage)" /> -->
+
+    <!-- <h1 id="about-me">about me <span class="text-2xl">(via GitHub<icon name="logos:github-octocat"/>)</span></h1>
+    <div class="githubprofile-content" v-html="formatContent(gitHubProfile)" /> -->
+    
   </div>
 </template>
 <script setup>
@@ -23,11 +27,13 @@ function formatContent(contentAttribute) {
   return $mdRenderer.render(contentAttribute);
 }
 const appStore = useAppStore();
-await appStore.fetchGitHubProfile();
-await appStore.fetchAboutThisPage();
+// await appStore.fetchGitHubProfile();
+// await appStore.fetchAboutThisPage();
+await appStore.fetchAboutPage();
 appStore.fetchRandomColor();
-const gitHubProfile = computed(() => { return appStore.getGitHubProfile; });
-const aboutThisPage = computed(() => { return appStore.getAboutThisPage; });
+// const gitHubProfile = computed(() => { return appStore.getGitHubProfile; });
+// const aboutThisPage = computed(() => { return appStore.getAboutThisPage; });
+const aboutPage = appStore.getAboutPage;
 
 onMounted(() => {
   let root = document.querySelector(":root");

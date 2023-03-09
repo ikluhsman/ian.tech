@@ -12,7 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "placeholder": {
+    "content": {
+      "type": "richtext"
+    },
+    "headline": {
       "type": "string"
     }
   }

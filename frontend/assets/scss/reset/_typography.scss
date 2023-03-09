@@ -35,9 +35,11 @@ h3,
 h4,
 h5,
 h6 {
+
   @include display-font;
-  color: $accent-color;
 }
+
+h1,h2,h3 { color: $accent-color; }
 
 h1 {
   @apply text-4xl;
@@ -56,10 +58,10 @@ h4 {
 }
 
 h5 {
-  @apply text-gray-700 dark:text-gray-300 text-lg;
+  @apply text-base;
 }
 
 h6 {
-  @apply text-gray-600 dark:text-gray-200 text-sm uppercase;
+  @apply text-gray-600 dark:text-gray-300 text-sm;
 }
 

@@ -1,27 +1,16 @@
 @mixin default-font {
   font-family: "Outfit";
   font-style: normal;
+  font-weight: 400;
 }
-
 @mixin display-font {
   font-family: "Outfit";
   font-style: normal;
 }
-
-@mixin monospace-font {
-  font-family: "Fira Mono";
-  font-style: normal;
-}
-
-@mixin monospace-bold-font {
-  font-family: "Fira Code iScript Bold"
-}
-
 @mixin cursive-font {
   font-family: "Fira Code iScript Italic";
-  font-style: italic;
+  font-style: normal;
 }
-
 .font-default {
   @include default-font;
 }
@@ -30,10 +19,4 @@
 }
 .font-cursive {
   @include cursive-font;
-}
-.font-monospace {
-  @include monospace-font;
-}
-.font-monospace-bold {
-  @include monospace-bold-font;
 }

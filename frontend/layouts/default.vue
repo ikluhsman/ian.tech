@@ -43,7 +43,7 @@ function scrollToTop() {
 <template>
   <color-scheme placeholder="" tag="span">
     <arrow-button id="top-button" @click="scrollToTop" class="opacity-0 fixed bottom-0 right-8 md:right-16" />
-    <div class="mt-2 pb-40">
+    <div>
       <div class="flex justify-center">
         <div class="flex w-full py-1/2">
           <theme-selector class="absolute right-2 top-2 mt-2" />
@@ -54,9 +54,9 @@ function scrollToTop() {
           <site-logo />
           <div>
             <div class="mt-8 sm:w-140 md:w-160">
-              <nuxt-link href="/" class="no-underline" v-if="route.path !== '/'">
-                {{ '\< ' }}
-                      <span class="underline">{{ ' index' }}</span>
+              <nuxt-link href="/" class="no-underline my-4 " v-if="route.path !== '/'">
+                <icon name="lucide:arrow-left" class="mx-1 h-4"/>
+                      <span class="underline">{{ ' back to index' }}</span>
               </nuxt-link>
               <slot />
             </div>

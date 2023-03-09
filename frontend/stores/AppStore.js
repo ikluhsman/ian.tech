@@ -6,6 +6,7 @@ export const useAppStore = defineStore("AppStore", {
       justification: "justify-center",
       gitHubRepos: [],
       homePage: {},
+      aboutPage: {},
       homePageArticles: [],
       homePagePhotos: [],
       resumePage: {},
@@ -17,6 +18,12 @@ export const useAppStore = defineStore("AppStore", {
     };
   },
   actions: {
+    async fetchAboutPage() {
+      const { find } = useStrapi();
+      const res = await find("about-page");
+      console.log(res.data);
+      this.aboutPage = res.data;
+    },
     async setImageOverlayUrl(url) {
       this.imageOverlayUrl = await url;
     },
@@ -140,6 +147,9 @@ export const useAppStore = defineStore("AppStore", {
     },
   },
   getters: {
+    getAboutPage() {
+      return this.aboutPage;
+    },
     getImageOverlayUrl() {
       return this.imageOverlayUrl;
     },

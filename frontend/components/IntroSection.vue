@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ thisSection.headline }}</h1>
-    <span class="m-0 text-lg accent-color font-display">hiring? see my <nuxt-link class="text-2xl text-shadow-accent-color font-" to="/resume">resum&egrave;</nuxt-link></span>
+    <span class="m-0 accent-color font-display text-xl font-bold">hiring? see </span><nuxt-link class="text-2xl text-shadow-accent-color" to="/resume">my resum&egrave;</nuxt-link>
     <section id="intro" class="intro" v-html="htmlContent" />
   </div>
 </template>
@@ -17,6 +17,5 @@ const appStore = useAppStore();
 const { $mdRenderer } = useNuxtApp();
 const thisSection = appStore.getHomePageIntroSection;
 const htmlContent = $mdRenderer.render(thisSection.content);
-console.log(htmlContent);
 </script>
 

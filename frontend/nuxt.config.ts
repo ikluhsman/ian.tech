@@ -17,12 +17,9 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Fira%20Mono",
-        },
-        {
-          rel: "stylesheet",
           href: "https://fonts.googleapis.com/css?family=Outfit",
-        },
+        },       
+
       ],
     },
   },
