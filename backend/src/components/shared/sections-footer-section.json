@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_sections_footer_sections",
+  "info": {
+    "displayName": "Sections.footerSection"
+  },
+  "options": {},
+  "attributes": {
+    "copyrightText": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

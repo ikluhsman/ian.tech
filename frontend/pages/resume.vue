@@ -13,7 +13,9 @@ definePageMeta({
     }
   }
 });
+const { $mdRenderer } = useNuxtApp();
 const appStore = useAppStore();
+
 await appStore.fetchResumePage();
 const resumePage = computed(() => {
   return appStore.getResumePage;
@@ -23,7 +25,7 @@ function formatDate(dateString, format) {
   const date = dayjs(dateString);
   return date.format(format);
 }
-const { $mdRenderer } = useNuxtApp();
+
 function formatContent(contentAttribute) {
   return $mdRenderer.render(contentAttribute);
 }
@@ -52,7 +54,6 @@ function toggleMenu(event, e) {
     scrollTo: { y: "#" + el.id, offsetY: lastHeight + 100 },
   });
 }
-
 async function clickImageOverlay(r) {
   await appStore.setImageOverlayUrl(r.attributes.image.data.attributes.formats.large.url);
   appStore.imageOverlayIsOpen = !appStore.imageOverlayIsOpen;
@@ -61,9 +62,10 @@ async function clickImageOverlay(r) {
 </script>
 <template>
   <div class="mx-auto">
+    <section id="heading" class="heading4 sm:mt-24 mt-16" v-html="formatContent(resumePage.attributes.headlineContent)"/>
     <section v-for="(section, key) in resumePage.attributes.resumeSections" :key="key"
       class="experience-section relative">
-      <h3>{{ section.headline }}</h3>
+      <h1>{{ section.headline }}</h1>
       <ul v-if="section.experiences.data.length > 0" class="list-none p-0">
         <li v-for="(e, k) in section.experiences.data" :key="k" :id="'accordion-li-' + e.id" class="accordion-group py-2 first:pt-0 last:pb-0">
           <div id="experience-header" class="flex group cursor-pointer" @click="toggleMenu($event, e)">
@@ -156,6 +158,7 @@ async function clickImageOverlay(r) {
   </div>
 </template>
 <style scoped>
+
 .experience-separator {
   @apply border-gray-400 dark:border-gray-600 border border-solid;
 }

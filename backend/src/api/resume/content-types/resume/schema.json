@@ -21,6 +21,17 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.default-seo"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "headlineContent": {
+      "type": "richtext"
+    },
+    "footerSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.sections-footer-section"
     }
   }
 }

@@ -35,11 +35,12 @@ h3,
 h4,
 h5,
 h6 {
-
   @include display-font;
 }
 
 h1,h2,h3 { color: $accent-color; }
+
+h3 { @include cursive-font; }
 
 h1 {
   @apply text-4xl;

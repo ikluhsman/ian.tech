@@ -15,6 +15,7 @@ export const useAppStore = defineStore("AppStore", {
       article: {},
       imageOverlayIsOpen: false,
       imageOverlayUrl: "",
+      footerSection: {}
     };
   },
   actions: {
@@ -147,6 +148,9 @@ export const useAppStore = defineStore("AppStore", {
     },
   },
   getters: {
+    getFooterSection() {
+      return this.footerSection;
+    },
     getAboutPage() {
       return this.aboutPage;
     },

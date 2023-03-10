@@ -1,4 +1,6 @@
 <script setup>
+import { useAppStore } from '../stores/AppStore.js';
+const appStore = useAppStore();
 defineProps({
   footerPage: {
     type: Object,
@@ -9,7 +11,8 @@ defineProps({
 <template>
   <section>
     <footer>
-      <h2>footer</h2>
+      
+      <h2>{{ appStore.footerPage }} </h2>
       <!-- {{ footerPage.attributes.heading1 }} -->
       stuff in the footer
     </footer>
